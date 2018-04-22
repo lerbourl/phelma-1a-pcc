@@ -30,7 +30,7 @@ int main(int argc, char* argv[]){
     //affiche_graphe(g1);
     libere_graphe(g);
     //libere_graphe(g1);
-	int patate = 42;
+	int carotte = 42;
     libere_sommet(s);
 	
 	printf("coucou");
