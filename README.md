@@ -1,5 +1,4 @@
-EPALLE COLIN
-LERBOURG LOUIS
+EPALLE COLIN\nLERBOURG LOUIS
 
 # Projet en cours: Plus court chemin entre sommets d'un graphe
 
@@ -13,31 +12,22 @@ autres, nous avons choisis d'avoir un fichier .h par structure.
 
 ## Commandes utiles
 
-* compiler avec:
-    `make`
-
-* recompiler les .h avec:
-    `make clean`
-
-* exécuter avec:
-    `./pcc donnee_graphe.txt && echo $?`
-    (récupere aussi le code d'erreur:
-    0 pas de soucis
-    1 erreur indéterminée
-    2 erreur d'ouverture de fichier)
-
-* debugger avec:
-    `gdb ./pcc`
-    (commandes:
-    `break n` pour placer breakpoint ligne n,
-    `run` pour exécuter,
-    `step` pour avancer,
-    `list` pour montrer l'environnement de la ligne,
-    `h` pour help,
-    `q` quitter)
-
-* tracer les fuites de memoire avec:
-    `valgrind --leak-check=full ./pcc`
+* compiler avec:`make`
+* recompiler les .h avec:`make clean`
+* exécuter avec:`./pcc donnee_graphe.txt && echo $?`\n
+récupère aussi le code d'erreur:\n
+0 pas de soucis\n
+1 erreur indéterminée\n
+2 erreur d'ouverture de fichier)
+* debugger avec:`gdb ./pcc`\n
+commandes:\n
+`break n` pour placer breakpoint ligne n,\n
+`run` pour exécuter,\n
+`step` pour avancer,\n
+`list` pour montrer l'environnement de la ligne,\n
+`h` pour help,\n
+`q` quitter)\n
+* tracer les fuites de memoire avec:`valgrind --leak-check=full ./pcc`
 
 # Git
 
