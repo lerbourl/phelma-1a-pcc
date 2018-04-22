@@ -34,5 +34,6 @@ int main(int argc, char* argv[]){
     libere_sommet(s);
 	
 	printf("coucou");
+	int new_modif = 11111111111;
     return EXIT_SUCCESS;
 }
