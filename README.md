@@ -16,7 +16,7 @@ autres, nous avons choisis d'avoir un fichier .h par structure.
 
 * compiler avec:`make`
 * recompiler les .h avec:`make clean`
-* exécuter avec:`./pcc donnee_graphe.txt && echo $?` (récupère aussi le code
+* exécuter avec:`./pcc donnee_graphe.txt ; echo $?` (récupère aussi le code
     d'erreur: 0 pas de soucis, 1 erreur indéterminée, 2 erreur d'ouverture de
     fichier)
 * debugger avec:`gdb ./pcc` (commandes:`break n` pour placer breakpoint ligne n,
@@ -24,7 +24,7 @@ autres, nous avons choisis d'avoir un fichier .h par structure.
  de la ligne, `h` pour help, `q` quitter)
 * tracer les fuites de memoire avec:`valgrind --leak-check=full ./pcc`
 
-# Git
+## Git
 
 stp ne pas commit les .o!! make clean d'abord.
 
