@@ -12,6 +12,7 @@ GRAPHE cree_graphe(int n){
     g.tab_s = malloc(n * sizeof(T_SOMMET));
     return g;
 }
+
 GRAPHE lecture_fichier(char* nom_fichier){
     GRAPHE g;
     T_SOMMET s;
@@ -27,6 +28,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
     g = cree_graphe(ns);
     fgets(mot,511,f); //?
     fgets(mot,511,f);//ligne "Sommets du graphe" ignorée
+    s.voisins = creer_liste();
     for (i = 0; i < ns; i++){
         fscanf(f,"%d %lf %lf %s", &(numero), &(lat), &(longi), line);
         /* numéro contient alors l’entier, lat et longi la position, line le nom de la ligne */
@@ -38,7 +40,6 @@ GRAPHE lecture_fichier(char* nom_fichier){
         s.y = longi;
         s.nom_ligne = line;
         s.nom_noeud = mot;
-        s.voisins = creer_liste();
         g.tab_s[numero] = s;
     }
     fgets(mot,511,f);//ligne "arc du graphe : départ arrivée valeur " ignorée
