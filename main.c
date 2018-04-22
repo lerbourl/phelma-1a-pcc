@@ -26,13 +26,11 @@ int main(int argc, char* argv[]){
     s.num = 12;
     g.tab_s[2] = s;
 
-    affiche_graphe(g);//commentaire
+    affiche_graphe(g);
     //affiche_graphe(g1);
     libere_graphe(g);
     //libere_graphe(g1);
-	int patate = 42;
     libere_sommet(s);
-	
-	printf("coucou");
+
     return EXIT_SUCCESS;
 }
