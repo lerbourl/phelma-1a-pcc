@@ -25,7 +25,7 @@ int main(int argc, char* argv[]){
     g.tab_s[1] = s;
     s.num = 12;
     g.tab_s[2] = s;
-//commentaire test2
+    
     affiche_graphe(g);
     //affiche_graphe(g1);
     libere_graphe(g);
