@@ -1,6 +1,6 @@
 #
 # Le makefile du projet 1a phelma. Tapper "make" cree l'executable "pcc". Tapper
-# "make clean" efface les .o et l'exécutable.
+# "make clean" efface les .o, l'exécutable et permet de recharger les .h.
 
 #
 # definition de variables
@@ -16,7 +16,7 @@ CFLAGS = -Wall -g
 LIBS = -lm
 
 # les sources C
-SRCS = main.c fichier.c arc_sommet.c
+SRCS = main.c graphe.c arc.c sommet.c larc.c liste.c
 
 # les objets C
 OBJS = $(SRCS:.c=.o)
@@ -29,8 +29,11 @@ EXC = pcc
 all:	$(EXC)
 		@echo executable pcc est compilé avec succès!!
 
-$(EXC): $(OBJS)
-		$(CC) $(CFLAGS) -o $(EXC) $(OBJS) $(LIBS)
+pcc: $(OBJS)
+		$(CC) -o $@ $^ $(LIBS)
+
+%.o: %.c
+		$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
 		$(RM) *.o *~ $(EXC)

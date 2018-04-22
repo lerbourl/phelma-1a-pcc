@@ -1,0 +1,78 @@
+#include "liste.h"
+
+
+Liste creer_liste(){
+	return NULL;
+}
+int liste_vide(Liste l){
+	return !l;
+}
+void visualiser(Liste l){
+	if (!liste_vide(l)){
+		affiche_element(&l->val);
+		visualiser(l->suiv);
+	}
+}
+Liste ajout_tete(ELEMENT c, Liste l){
+	Liste p = malloc(sizeof(*p));
+	if (p == NULL) exit(0);
+	p->val = c;
+	p->suiv = l;
+	return p;
+}
+Liste supprimer_tete(Liste l){
+	if(liste_vide(l)) return creer_liste();
+	else{
+		Liste p;
+		p = l->suiv;
+		free(l);
+		return p;
+	}
+}
+void liberer(Liste l){
+	if (liste_vide(l)) free(l);
+	else{
+		liberer(l->suiv);
+		free(l);
+	}
+}
+Liste ajout_queue(ELEMENT c, Liste l){
+	if (liste_vide(l)){
+		l = malloc(sizeof(*l));
+		if (l == NULL) exit(0);
+		l->val = c;
+		l->suiv = creer_liste();
+		return l;
+	}
+	else{
+		l->suiv = ajout_queue(c, l->suiv);
+		return l;
+	}
+}
+Liste concat(Liste l1, Liste l2){
+	if (liste_vide(l1)){
+		return l2;
+	}
+	else{
+		l1->suiv = concat(l1->suiv, l2);
+		return l1;
+	}
+}
+Liste copie(Liste l){
+	if (liste_vide(l)) return creer_liste();
+	Liste p = malloc(sizeof(*p));
+	if (p == NULL) exit(0);
+	p->val = l->val;
+	p->suiv = copie(l->suiv);
+	return p;
+}
+Liste supprimen(int n, Liste l){
+	if (liste_vide(l)) return NULL;
+	if (n == 1){
+		l->suiv = supprimer_tete(l);
+	}
+	else{
+		supprimen(n - 1, l->suiv);
+	}
+	return l;
+}
