@@ -32,5 +32,7 @@ int main(int argc, char* argv[]){
     //libere_graphe(g1);
     libere_sommet(s);
 
+	int new_modif = 11111111111;
+
     return EXIT_SUCCESS;
 }
