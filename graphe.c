@@ -37,8 +37,8 @@ GRAPHE lecture_fichier(char* nom_fichier){
         /* mot contient le nom du sommet. */
         s.x = lat;
         s.y = longi;
-        s.nom_ligne = line;
-        s.nom_noeud = mot;
+        s.nom_ligne = strdup(line);
+        s.nom_noeud = strdup(mot);
         g.tab_s[numero] = s;
     }
     fgets(mot,511,f);//ligne "arc du graphe : départ arrivée valeur " ignorée
@@ -56,5 +56,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
 }
 
 void libere_graphe(GRAPHE g){
+    int i;
+    for (i = 0; i < g.nb_s ; i++) libere_sommet(g.tab_s[i]);
     free(g.tab_s);
 }
