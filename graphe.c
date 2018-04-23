@@ -3,7 +3,10 @@
 void affiche_graphe(GRAPHE g){
     int n = g.nb_s;
     int i;
-    for (i = 0; i < n; i++) affiche_sommet(&g.tab_s[i]);
+    for (i = 0; i < n; i++){
+        printf("\n  SOMMET %d",i);
+        affiche_sommet(&g.tab_s[i]);
+    }
 }
 
 GRAPHE cree_graphe(int n){
@@ -31,6 +34,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
     s.voisins = creer_liste();
     for (i = 0; i < ns; i++){
         fscanf(f,"%d %lf %lf %s", &(numero), &(lat), &(longi), line);
+        fseek(f, 1, SEEK_CUR);
         /* numéro contient alors l’entier, lat et longi la position, line le nom de la ligne */
         fgets(mot,511,f);
         if (mot[strlen(mot)-1]<32) mot[strlen(mot)-1]=0;
