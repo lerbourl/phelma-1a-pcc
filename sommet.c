@@ -6,5 +6,7 @@ void affiche_sommet(T_SOMMET* s){
 }
 
 void libere_sommet(T_SOMMET s){
+    //free(s.nom_noeud);
+    //free(s.nom_ligne);
     liberer(s.voisins);
 }
