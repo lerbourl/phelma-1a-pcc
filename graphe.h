@@ -10,10 +10,10 @@
 
 // DEFINITION DE STRUCTURE
 // graphes
-typedef T_SOMMET* L_SOMMET;
+typedef T_SOMMET* TAB_SOMMET;
 typedef struct {
-    L_SOMMET tab_s;
-    int nb_s;} GRAPHE;
+    int nb_s;
+    TAB_SOMMET tab_s;} GRAPHE;
 
 // PROTOTYPES
 void affiche_graphe(GRAPHE);
