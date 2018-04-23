@@ -8,10 +8,9 @@
 // DEFINITION DE STRUCTURE
 // sommets
 typedef struct {
-    int num;
-    double x,y;
-    char* nom_ligne;
     char* nom_noeud;
+    double x,y;
+    char* nom_ligne; // graphe metro par exemple
     L_ARC voisins;} T_SOMMET;
 
 // PROTOTYPES

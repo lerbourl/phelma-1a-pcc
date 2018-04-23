@@ -35,7 +35,6 @@ GRAPHE lecture_fichier(char* nom_fichier){
         fgets(mot,511,f);
         if (mot[strlen(mot)-1]<32) mot[strlen(mot)-1]=0;
         /* mot contient le nom du sommet. */
-        s.num = numero;
         s.x = lat;
         s.y = longi;
         s.nom_ligne = line;
