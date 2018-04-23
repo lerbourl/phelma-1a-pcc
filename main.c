@@ -7,11 +7,11 @@
 
 int main(int argc, char* argv[]){
     int n = 3;
-    T_ARC a1, a2;
-    L_ARC l = NULL;
-    GRAPHE g = cree_graphe(n);
-    //GRAPHE g1 = lecture_fichier(argv[1]);
-
+    //T_ARC a1, a2;
+    //L_ARC l = NULL;
+    //GRAPHE g = cree_graphe(n);
+    GRAPHE g1 = lecture_fichier(argv[1]);
+    /*
     a1.arrivee = 7;
     a1.cout = 2.8;
     a2.arrivee = 3;
@@ -25,12 +25,12 @@ int main(int argc, char* argv[]){
     g.tab_s[1] = s;
     s.num = 12;
     g.tab_s[2] = s;
-
-    affiche_graphe(g);
-    //affiche_graphe(g1);
-    libere_graphe(g);
-    //libere_graphe(g1);
-    libere_sommet(s);
+    */
+    //affiche_graphe(g);
+    affiche_graphe(g1);
+    //libere_graphe(g);
+    libere_graphe(g1);
+    //libere_sommet(s);
 
     return EXIT_SUCCESS;
 }
