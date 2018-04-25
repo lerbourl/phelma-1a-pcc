@@ -21,4 +21,8 @@ GRAPHE cree_graphe(int);
 GRAPHE lecture_fichier(char*);
 void libere_graphe(GRAPHE);
 
+//a depaler dans fichier separe
+L_ARC pcc(GRAPHE, T_SOMMET start, T_SOMMET finish);
+// ou renvoie Liste de sommets
+
 #endif
