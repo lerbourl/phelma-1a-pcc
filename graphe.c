@@ -54,7 +54,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
         a.cout = cout;
         g.tab_s[sdep].voisins = ajout_tete(a, g.tab_s[sdep].voisins);
     }
-    libere_sommet(s);
+    //libere_sommet(s);     IL FAUDRAIT PAS UTILISER DE BUFFER 
     fclose(f);
     return g;
 }
