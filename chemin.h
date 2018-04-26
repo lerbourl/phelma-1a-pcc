@@ -5,6 +5,6 @@
 #include <stdio.h>
 #include "graphe.h"
 
-L_ARC pcc2(GRAPHE, T_SOMMET, T_SOMMET);
+L_ARC pcc(GRAPHE, T_SOMMET, T_SOMMET);
 
 #endif
