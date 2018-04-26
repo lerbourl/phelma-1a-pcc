@@ -3,8 +3,10 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <math.h>
 #include "graphe.h"
 
-L_ARC pcc2(GRAPHE, T_SOMMET, T_SOMMET);
+T_ARC trouve_arc(GRAPHE g, int d, int a);
+L_ARC pcc(GRAPHE, int, int);
 
 #endif

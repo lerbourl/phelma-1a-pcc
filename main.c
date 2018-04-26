@@ -7,6 +7,12 @@
 #include "chemin.h"
 
 int main(int argc, char* argv[]){
+	/* A FAIRE :
+		changer exit(0) dans liste.c
+		faire doc sur les erreurs
+		ppc : cas si pas de solution
+	*/
+	
     int n = 3;
     //T_ARC a1, a2;
     //L_ARC l = NULL;
@@ -29,9 +35,20 @@ int main(int argc, char* argv[]){
     */
     //affiche_graphe(g);
     affiche_graphe(g1);
+    
+    //test PCC
+    L_ARC chemin;
+    chemin = pcc(g1, 0, 5);
+    printf("\n\nPCC :\n");
+    affiche_larc(chemin);
+    // test a faire : si pas de solution
+    
+    
+    
     //libere_graphe(g);
     libere_graphe(g1);
     //libere_sommet(s);
+    
 
     return EXIT_SUCCESS;
 }
