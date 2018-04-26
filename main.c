@@ -4,6 +4,7 @@
 #include "sommet.h"
 #include "larc.h"
 #include "graphe.h"
+#include "chemin.h"
 
 int main(int argc, char* argv[]){
     int n = 3;
