@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <time.h>
 #include "arc.h"
 #include "sommet.h"
 #include "larc.h"
@@ -7,6 +8,8 @@
 #include "chemin.h"
 
 int main(int argc, char* argv[]){
+    int timer = clock();
+
     int n = 3;
     //T_ARC a1, a2;
     //L_ARC l = NULL;
@@ -33,5 +36,7 @@ int main(int argc, char* argv[]){
     libere_graphe(g1);
     //libere_sommet(s);
 
+    // timer éxecution
+    printf("\nFIN TIMER : %fs\n", (double)(clock() - timer)/CLOCKS_PER_SEC);
     return EXIT_SUCCESS;
 }
