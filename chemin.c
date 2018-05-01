@@ -1,7 +1,7 @@
 #include "chemin.h"
 
 
-// a mettre dans larc.c ???
+// a mettre dans larc.c ??? OUI CE SERAIT BIEN
 T_ARC trouve_arc(GRAPHE g, int d, int a) {
 	L_ARC larc;
 	for (larc=g.tab_s[d].voisins ; larc->val.arrivee!=a ; larc=larc->suiv);
@@ -14,15 +14,15 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 
 	/* INIT */
 	double* t_pcc = malloc(g.nb_s * sizeof(double));
-	if (t_pcc==NULL) exit(3);
+	err_ctrl(t_pcc, "erreur tableau dynamique t_pcc", __FILE__, __func__, __LINE__, "");
 	int* pere = malloc(g.nb_s * sizeof(int));
-	if (pere==NULL) exit(3);
+	err_ctrl(pere, "erreur tableau dynamique pere", __FILE__, __func__, __LINE__, "");
 	// s_atteint = tableau des sommets atteint :
 	// if s_atteint[j]==0 : j dans C (ensemble des sommets qui restent a visiter)
 	// if s_atteint[j]==1 : j dans S (ensemble des sommets dont on connait le ppc en partant de d)
 	int* s_atteint = calloc(g.nb_s, sizeof(int));   //utilisation de calloc pour initialiser 0
-	if (s_atteint==NULL) exit(3);
-	
+	err_ctrl(s_atteint, "erreur tableau dynamique s_atteint", __FILE__, __func__, __LINE__, "");
+
 	for(i=0; i<g.nb_s; i++) {
 		t_pcc[i] = INFINITY;
 		pere[i] = -1;
@@ -52,7 +52,7 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 			return NULL;
 		}      										///////////////////////////////////////////////////////////
 		s_atteint[j] = 1;   //j devient atteint
-		
+
 		/* maj du pcc pour tous les voisins de j */
 		for(v=g.tab_s[j].voisins ; v!=NULL ; v=v->suiv) {
 			if (t_pcc[v->val.arrivee] > t_pcc[j] + v->val.cout) {
@@ -74,7 +74,7 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 		printf("pere %d %d\n", i,pere[i]);
 	}*/
 	// FIN DEBUG
-	
+
 	/* Creation de chemin a partir de pere */
 	L_ARC chemin = creer_liste();
 	for (i=a; i!=d; i=pere[i]) {

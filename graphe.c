@@ -13,6 +13,7 @@ GRAPHE cree_graphe(int n){
     GRAPHE g;
     g.nb_s = n;
     g.tab_s = malloc(n * sizeof(T_SOMMET));
+    err_ctrl(g.tab_s, "erreur malloc", __FILE__, __func__, __LINE__, "");
     return g;
 }
 
@@ -25,7 +26,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
     char mot[512] ;
     FILE* f = NULL;
     f = fopen(nom_fichier, "r");
-    if (!f) exit(2);
+    err_ctrl(f, "erreur ouverture de fichier: ", __FILE__, __func__, __LINE__, nom_fichier);
     fscanf(f, "%d %d", &ns, &na); //nombre de sommets et arcs
     g = cree_graphe(ns);
     fgets(mot,511,f); //?

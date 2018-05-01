@@ -9,13 +9,12 @@
 
 int main(int argc, char* argv[]){
 	/* A FAIRE :
-		changer exit(0) dans liste.c
-		faire doc sur les erreurs
-		ppc : cas si pas de solution
+        ERREURS à voir à la fin. (pas fini de tout répertorier)
+        (faire une fonction pour ça? type err_ctrl(void* tst, char* msg, ))
 	*/
-	
+
 	int timer = clock();
-    int n = 3;
+    //int n = 3;
     //T_ARC a1, a2;
     //L_ARC l = NULL;
     //GRAPHE g = cree_graphe(n);
@@ -37,20 +36,17 @@ int main(int argc, char* argv[]){
     */
     //affiche_graphe(g);
     affiche_graphe(g1);
-    
+
     //test PCC
     L_ARC chemin;
     chemin = pcc(g1, 0, 6);
     printf("\n\nPCC :\n");
     affiche_larc(chemin);
-    // test a faire : si pas de solution
-    
-    
-    
+
     //libere_graphe(g);
     libere_graphe(g1);
     //libere_sommet(s);
-    
+
 
     // timer éxecution
     printf("\nFIN TIMER : %fs\n", (double)(clock() - timer)/CLOCKS_PER_SEC);

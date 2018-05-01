@@ -6,7 +6,9 @@
 #include "arc.h"
 #include "sommet.h"
 #include "larc.h"
+#include "erreurctrl.h"
 #include <string.h>
+
 
 // DEFINITION DE STRUCTURE
 // graphes

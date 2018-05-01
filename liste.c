@@ -15,7 +15,10 @@ void visualiser(Liste l){
 }
 Liste ajout_tete(ELEMENT c, Liste l){
 	Liste p = malloc(sizeof(*p));
-	if (p == NULL) exit(0);
+	if (p == NULL){
+		printf("\nerreur malloc %s %s", __FILE__, __func__);
+		exit(2);
+	}
 	p->val = c;
 	p->suiv = l;
 	return p;
@@ -39,7 +42,10 @@ void liberer(Liste l){
 Liste ajout_queue(ELEMENT c, Liste l){
 	if (liste_vide(l)){
 		l = malloc(sizeof(*l));
-		if (l == NULL) exit(0);
+		if (l == NULL){
+			printf("\nerreur malloc %s %s", __FILE__, __func__);
+			exit(3);
+		}
 		l->val = c;
 		l->suiv = creer_liste();
 		return l;
@@ -61,7 +67,10 @@ Liste concat(Liste l1, Liste l2){
 Liste copie(Liste l){
 	if (liste_vide(l)) return creer_liste();
 	Liste p = malloc(sizeof(*p));
-	if (p == NULL) exit(0);
+	if (p == NULL){
+		printf("\nerreur malloc %s %s", __FILE__, __func__);
+		exit(4);
+	}
 	p->val = l->val;
 	p->suiv = copie(l->suiv);
 	return p;

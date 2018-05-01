@@ -12,6 +12,16 @@ liste) est adapté : définition de `ELEMENT` et `affiche_element()`.
 D'autant plus que les structures sont toutes imbriquées les unes dans les
 autres, nous avons choisis d'avoir un fichier .h par structure.
 
+## ERREURS
+
+Erreurs exit
+* gerées par `err_ctrl` : 2
+* 0 pas d'erreurs
+* 1 erreur non définie
+* 2 erreur malloc `ajout_tete` (liste.c)
+* 3 erreur malloc `supprimer_tete` (liste.c)
+* 4 erreur malloc `copie` (liste.c)
+
 ## Commandes utiles
 
 * compiler avec:`make`
