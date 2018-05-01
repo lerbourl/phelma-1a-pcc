@@ -40,7 +40,7 @@ int main(int argc, char* argv[]){
     
     //test PCC
     L_ARC chemin;
-    chemin = pcc(g1, 0, 5);
+    chemin = pcc(g1, 0, 6);
     printf("\n\nPCC :\n");
     affiche_larc(chemin);
     // test a faire : si pas de solution
