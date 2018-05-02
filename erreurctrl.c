@@ -8,7 +8,7 @@ err_ctrl(p, "erreur malloc!", __FILE__, __func__, __LINE__, "");
 */
 void err_ctrl(void* tst, char* msg, char* file, const char* function, int line, char* data){
     if (tst == NULL){
-        printf("\n//////////\n//ERREUR//\n//////////\nfichier: %s\nfonction: %s\nline: %d\n%s%s\n", file, function, line, msg, data);
+        printf("\n//////////\n//ERREUR//\n//////////\nfichier: %s\nfonction: %s\nligne: %d\n%s%s\n", file, function, line, msg, data);
         exit(2);
     }
 }
