@@ -16,7 +16,7 @@ CFLAGS = -Wall -g
 LIBS = -lm
 
 # les sources C
-SRCS = main.c graphe.c arc.c sommet.c larc.c liste.c chemin.c erreurctrl.c
+SRCS = main.c graphe.c arc.c sommet.c larc.c liste.c chemin.c erreurctrl.c hash.c
 
 # les objets C
 OBJS = $(SRCS:.c=.o)

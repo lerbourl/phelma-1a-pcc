@@ -6,11 +6,10 @@
 #include "larc.h"
 #include "graphe.h"
 #include "chemin.h"
+#include "hash.h"
 
 int main(int argc, char* argv[]){
 	/* A FAIRE :
-        ERREURS à voir à la fin. (pas fini de tout répertorier)
-        (faire une fonction pour ça? type err_ctrl(void* tst, char* msg, ))
 	*/
 
 	int timer = clock();
