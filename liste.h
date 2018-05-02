@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "arc.h"
-#include "erreurctrl.h"
 
 //définir ailleur ce qu'est ELEMENT!
 struct cellule {
