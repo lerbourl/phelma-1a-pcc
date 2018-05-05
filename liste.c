@@ -8,10 +8,10 @@ Liste creer_liste(){
 int liste_vide(Liste l){
 	return !l;
 }
-void visualiser(action affiche_element, Liste l){
+void aff_liste(action affiche_element, Liste l){
 	if (!liste_vide(l)){
 		affiche_element(l->val);
-		visualiser(affiche_element, l->suiv);
+		aff_liste(affiche_element, l->suiv);
 	}
 }
 Liste ajout_tete(void* e, Liste l){
@@ -33,10 +33,10 @@ Liste supprimer_tete(Liste l){
 		return p;
 	}
 }
-void liberer(Liste l){
+void lib_liste(Liste l){
 	if (liste_vide(l)) free(l);
 	else{
-		liberer(l->suiv);
+		lib_liste(l->suiv);
 		free(l);
 	}
 }

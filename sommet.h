@@ -11,6 +11,12 @@ typedef struct {
     char* nom_ligne; // graphe metro par exemple
     L_ARC voisins;} T_SOMMET;
 
+// sommets pour hachage
+typedef struct {
+    int index;
+    char* nom_noeud;
+} H_SOMMET;
+
 // PROTOTYPES
 void affiche_sommet(T_SOMMET*);
 void libere_sommet(T_SOMMET);
