@@ -3,7 +3,6 @@
 #include <time.h>
 #include "arc.h"
 #include "sommet.h"
-#include "larc.h"
 #include "graphe.h"
 #include "chemin.h"
 #include "hash.h"

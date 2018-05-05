@@ -1,4 +1,6 @@
 #include "graphe.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 void affiche_graphe(GRAPHE g){
     int n = g.nb_s;

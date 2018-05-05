@@ -1,5 +1,6 @@
 #include "chemin.h"
-
+#include <stdlib.h>
+#include <stdio.h>
 
 // a mettre dans larc.c ??? OUI CE SERAIT BIEN
 T_ARC* trouve_arc(GRAPHE g, int d, int a) {

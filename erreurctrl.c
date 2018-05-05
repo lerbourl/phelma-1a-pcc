@@ -1,4 +1,6 @@
 #include "erreurctrl.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 /*
 Si le pointeur recuperé est NULL, il y a un soucis et on exit 2.

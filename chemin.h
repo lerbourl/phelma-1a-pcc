@@ -1,8 +1,6 @@
 #ifndef _CHEMIN_H_//evitons les inclusions infinies
 #define _CHEMIN_H_
 
-#include <stdlib.h>
-#include <stdio.h>
 #include <math.h>
 #include "graphe.h"
 #include "erreurctrl.h"

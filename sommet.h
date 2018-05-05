@@ -1,9 +1,7 @@
 #ifndef _SOMMET_H_ //evitons les inclusions infinies
 #define _SOMMET_H_
 
-#include <stdlib.h>
-#include <stdio.h>
-#include "larc.h"
+#include "arc.h"
 
 // DEFINITION DE STRUCTURE
 // sommets

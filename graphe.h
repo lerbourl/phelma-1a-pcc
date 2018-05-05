@@ -1,11 +1,8 @@
 #ifndef _GRAPHE_H_ //evitons les inclusions infinies
 #define _GRAPHE_H_
 
-#include <stdlib.h>
-#include <stdio.h>
 #include "arc.h"
 #include "sommet.h"
-#include "larc.h"
 #include "erreurctrl.h"
 #include <string.h>
 

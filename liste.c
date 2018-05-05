@@ -1,4 +1,6 @@
 #include "liste.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 Liste creer_liste(){
 	return NULL;

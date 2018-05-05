@@ -1,4 +1,6 @@
 #include "arc.h"
+#include <stdlib.h>
+#include <stdio.h>
 
 //passer un pointeur sur arc
 //doit être de la forme "int print(void*)" (compatibilité avec le fichier liste)

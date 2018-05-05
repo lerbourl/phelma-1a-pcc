@@ -1,8 +1,6 @@
 #ifndef _LISTE_H_
 #define _LISTE_H_
 
-#include <stdio.h>
-#include <stdlib.h>
 #include "callbacks.h"
 
 struct Liste_t {
