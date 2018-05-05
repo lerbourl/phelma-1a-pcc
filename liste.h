@@ -1,23 +1,23 @@
-#ifndef DEF_LISTE
-#define DEF_LISTE
+#ifndef _LISTE_H_
+#define _LISTE_H_
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "arc.h"
+#include "callbacks.h"
 
-//définir ailleur ce qu'est ELEMENT!
-struct cellule {
-	ELEMENT val;
-	struct cellule* suiv;};
-typedef struct cellule* Liste;
+struct Liste_t {
+	void* val;
+	struct Liste_t* suiv;
+};
+typedef struct Liste_t* Liste;
 
 Liste creer_liste();
 int liste_vide(Liste l);
-void visualiser(Liste l);
-Liste ajout_tete(ELEMENT c, Liste l);
+void visualiser(action, Liste);
+Liste ajout_tete(void*, Liste);
 Liste supprimer_tete(Liste l) ;
 void liberer(Liste l);
-Liste ajout_queue(ELEMENT c, Liste l);
+Liste ajout_queue(void*, Liste);
 Liste concat(Liste l1, Liste l2);
 Liste copie(Liste l);
 Liste supprimen(int n, Liste l);

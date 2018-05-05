@@ -1,5 +1,5 @@
-#ifndef DEF_ARC //evitons les inclusions infinies
-#define DEF_ARC
+#ifndef _ARC_H_ //evitons les inclusions infinies
+#define _ARC_H_
 
 #include <stdlib.h>
 #include <stdio.h>
@@ -8,13 +8,10 @@
 // arcs
 typedef struct {
     int arrivee;
-    double cout;} T_ARC;
+    double cout;
+} T_ARC;
 
 // PROTOTYPES
-void affiche_arc(T_ARC*);
-
-// en vue de L_ARC
-void affiche_element(T_ARC*);
-typedef T_ARC ELEMENT;
+int affiche_arc(void*);
 
 #endif

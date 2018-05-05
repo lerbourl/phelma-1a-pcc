@@ -1,5 +1,5 @@
-#ifndef DEF_GRAPHE //evitons les inclusions infinies
-#define DEF_GRAPHE
+#ifndef _GRAPHE_H_ //evitons les inclusions infinies
+#define _GRAPHE_H_
 
 #include <stdlib.h>
 #include <stdio.h>

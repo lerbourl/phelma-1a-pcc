@@ -2,9 +2,9 @@
 
 
 // a mettre dans larc.c ??? OUI CE SERAIT BIEN
-T_ARC trouve_arc(GRAPHE g, int d, int a) {
+T_ARC* trouve_arc(GRAPHE g, int d, int a) {
 	L_ARC larc;
-	for (larc=g.tab_s[d].voisins ; larc->val.arrivee!=a ; larc=larc->suiv);
+	for (larc=g.tab_s[d].voisins ; ((T_ARC*)larc->val)->arrivee!=a ; larc=larc->suiv);
 	return larc->val;
 }
 
@@ -55,9 +55,9 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 
 		/* maj du pcc pour tous les voisins de j */
 		for(v=g.tab_s[j].voisins ; v!=NULL ; v=v->suiv) {
-			if (t_pcc[v->val.arrivee] > t_pcc[j] + v->val.cout) {
-				t_pcc[v->val.arrivee] = t_pcc[j] + v->val.cout;
-				pere[v->val.arrivee] = j;
+			if (t_pcc[((T_ARC*)v->val)->arrivee] > t_pcc[j] + ((T_ARC*)v->val)->cout) {
+				t_pcc[((T_ARC*)v->val)->arrivee] = t_pcc[j] + ((T_ARC*)v->val)->cout;
+				pere[((T_ARC*)v->val)->arrivee] = j;
 			}
 		}
 		old_j = j;    ////////////////////////////////////////////////////

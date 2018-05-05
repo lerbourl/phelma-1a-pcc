@@ -1,5 +1,5 @@
-#ifndef DEF_ERREURCTRL//évitons les inclusions infinies
-#define DEF_ERREURCTRL
+#ifndef _ERREURCTRL_H_//évitons les inclusions infinies
+#define _ERREURCTRL_H_
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -1,9 +1,8 @@
 #include "arc.h"
 
-void affiche_arc(T_ARC* a){
-    printf("  ARC arrivee:%d cout:%f\n", a->arrivee, a->cout);
-}
-
-void affiche_element(T_ARC* a){
-    affiche_arc(a);
+//passer un pointeur sur arc
+//doit être de la forme "int print(void*)" (compatibilité avec le fichier liste)
+int affiche_arc(void* pa_ambigu){
+    T_ARC* pa = (T_ARC*) pa_ambigu;
+    return printf("  ARC arrivee:%d cout:%f\n", pa->arrivee, pa->cout);
 }

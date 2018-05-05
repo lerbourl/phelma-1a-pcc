@@ -1,5 +1,5 @@
-#ifndef DEF_SOMMET //evitons les inclusions infinies
-#define DEF_SOMMET
+#ifndef _SOMMET_H_ //evitons les inclusions infinies
+#define _SOMMET_H_
 
 #include <stdlib.h>
 #include <stdio.h>

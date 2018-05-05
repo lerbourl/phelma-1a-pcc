@@ -1,25 +1,24 @@
 #include "liste.h"
 
-
 Liste creer_liste(){
 	return NULL;
 }
 int liste_vide(Liste l){
 	return !l;
 }
-void visualiser(Liste l){
+void visualiser(action affiche_element, Liste l){
 	if (!liste_vide(l)){
-		affiche_element(&l->val);
-		visualiser(l->suiv);
+		affiche_element(l->val);
+		visualiser(affiche_element, l->suiv);
 	}
 }
-Liste ajout_tete(ELEMENT c, Liste l){
+Liste ajout_tete(void* e, Liste l){
 	Liste p = malloc(sizeof(*p));
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
 		exit(2);
 	}
-	p->val = c;
+	p->val = e;
 	p->suiv = l;
 	return p;
 }
@@ -39,19 +38,19 @@ void liberer(Liste l){
 		free(l);
 	}
 }
-Liste ajout_queue(ELEMENT c, Liste l){
+Liste ajout_queue(void* e, Liste l){
 	if (liste_vide(l)){
 		l = malloc(sizeof(*l));
 		if (l == NULL){
 			printf("\nerreur malloc %s %s", __FILE__, __func__);
 			exit(3);
 		}
-		l->val = c;
+		l->val = e;
 		l->suiv = creer_liste();
 		return l;
 	}
 	else{
-		l->suiv = ajout_queue(c, l->suiv);
+		l->suiv = ajout_queue(e, l->suiv);
 		return l;
 	}
 }

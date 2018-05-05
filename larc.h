@@ -1,9 +1,10 @@
-#ifndef DEF_LARC //evitons les inclusions infinies
-#define DEF_LARC
+#ifndef _LARC_H_ //evitons les inclusions infinies
+#define _LARC_H_
 
 #include <stdlib.h>
 #include <stdio.h>
 #include "liste.h"
+#include "arc.h"
 
 // DEFINITION DE STRUCTURE
 // liste d'arcs

@@ -51,7 +51,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
         fgets(mot,511,f);
         a.arrivee = sarr;
         a.cout = cout;
-        g.tab_s[sdep].voisins = ajout_tete(a, g.tab_s[sdep].voisins);
+        g.tab_s[sdep].voisins = ajout_tete(&a, g.tab_s[sdep].voisins);
     }
     fclose(f);
     return g;
