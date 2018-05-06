@@ -8,7 +8,7 @@ struct arc_t{
 };
 
 T_ARC arc_new(void){
-    T_ARC a = malloc(1 * sizeof(*a));
+    T_ARC a = calloc(1, sizeof(*a));
     return a;
 }
 int arc_del(void* a){

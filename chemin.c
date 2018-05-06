@@ -73,5 +73,8 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 	for (i=a; i!=d; i=pere[i]) {
 		chemin = ajout_tete(trouve_arc(g.tab_s[pere[i]].voisins, i), chemin);
 	}
+	free(t_pcc);
+	free(pere);
+	free(s_atteint);
 	return chemin;
 }

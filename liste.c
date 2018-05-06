@@ -20,7 +20,7 @@ void liste_print(action element_print, Liste l){
 	}
 }
 Liste ajout_tete(void* e, Liste l){
-	Liste p = malloc(sizeof(*p));
+	Liste p = calloc(1,sizeof(*p));
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
 		exit(2);
@@ -49,7 +49,7 @@ void liste_del(action element_del, Liste l){
 }
 Liste ajout_queue(void* e, Liste l){
 	if (liste_vide(l)){
-		l = malloc(sizeof(*l));
+		l = calloc(1,sizeof(*l));
 		if (l == NULL){
 			printf("\nerreur malloc %s %s", __FILE__, __func__);
 			exit(3);
@@ -74,7 +74,7 @@ Liste concat(Liste l1, Liste l2){
 }
 Liste copie(Liste l){
 	if (liste_vide(l)) return liste_new();
-	Liste p = malloc(sizeof(*p));
+	Liste p = calloc(1, sizeof(*p));
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
 		exit(4);

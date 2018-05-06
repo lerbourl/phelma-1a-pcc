@@ -17,21 +17,21 @@ PARTIE DEDIEE AUX TESTS
 
 */
 	/*
-	//test interface sommets pour hachage
+	//test 1 interface sommets pour hachage
 	H_SOMMET hs = hs_make(3, "Paris");
 	hs_print(hs);
 	hs_del(hs);
 	*/
 
 	/*
-	//test interface arcs
+	//test 2 interface arcs
 	T_ARC arc = arc_make(3, 7.89);
 	arc_print(arc);
 	arc_del(arc);
 	*/
 
 	/*
-	//test liste d'arcs
+	//test 3 liste d'arcs
 	T_ARC a1 = arc_make(3, 7.89);
 	T_ARC a2 = arc_make(5, 9.42);
 	L_ARC l = liste_new();
@@ -42,7 +42,7 @@ PARTIE DEDIEE AUX TESTS
 	*/
 
 	/*
-	//test liste de hach-sommets
+	//test 4 liste de hach-sommets
 	H_SOMMET hs1 = hs_make(3, "Paris");
 	H_SOMMET hs2 = hs_make(5, "Lyon");
 	L_ARC l = liste_new();
@@ -53,7 +53,7 @@ PARTIE DEDIEE AUX TESTS
 	*/
 
 	/*
-	//test Sommet
+	//test 5 Sommet
 	T_ARC a1 = arc_make(3, 7.89);
 	T_ARC a2 = arc_make(5, 9.42);
 	L_ARC l = liste_new();
@@ -68,7 +68,7 @@ PARTIE DEDIEE AUX TESTS
 	//affiche_sommet(&s);
 	//libere_sommet(s);
 
-	//test graphe
+	//test 6 graphe
 	GRAPHE g = cree_graphe(1);
 	g.tab_s[0] = s;
 	affiche_graphe(g);
@@ -76,22 +76,23 @@ PARTIE DEDIEE AUX TESTS
 	*/
 
 	/*
-	//test lecture fichier graphe
+	//test 7 lecture fichier graphe
 	GRAPHE g = lecture_fichier(argv[1]);
 	affiche_graphe(g);
 	libere_graphe(g);
 	*/
 
 	/*
-	//test pcc
+	//test 8 pcc
 	GRAPHE g = lecture_fichier(argv[1]);
 	L_ARC chemin = pcc(g, 10, 8);
 	liste_print(arc_print, chemin);
 	libere_graphe(g);
+	liste_del(arc_del, chemin);
 	*/
 
 	/*
-	//test table de hachage -> ok mais erreur valgrind?
+	//test 9 table de hachage
 	H_TABLE ht = ht_make_empty(10);
 	ht_print(hs_print, ht);
 	H_SOMMET hs1 = hs_make(1, "Paris");
@@ -107,7 +108,7 @@ PARTIE DEDIEE AUX TESTS
 	*/
 
 	/*
-	//test remplissage table de hachage depuis graphe
+	//test 10 remplissage table de hachage depuis graphe
 	GRAPHE g = lecture_fichier(argv[1]);
 	//affiche_graphe(g);
 	H_TABLE ht = ht_make_graphe(g);
@@ -117,13 +118,11 @@ PARTIE DEDIEE AUX TESTS
 	*/
 
 	/*
-	//test recherche d'un hs dans la table
+	//test 11 recherche d'un hs dans la table
 	GRAPHE g = lecture_fichier(argv[1]);
-	affiche_graphe(g);
 	H_TABLE ht = ht_make_graphe(g);
-	ht_print(hs_print, ht);
 	printf("\nrecherche:");
-	H_SOMMET hs = ht_search(ht, hs_getn, "Grenoble");
+	H_SOMMET hs = ht_search(ht, hs_getn, "GrenZZZble");
 	if (hs) hs_print(hs);
 	ht_del(hs_del, ht);
 	libere_graphe(g);
