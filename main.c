@@ -54,7 +54,25 @@ PARTIE DEDIEE AUX TESTS
 
 	/*
 	//test Sommet
+	T_ARC a1 = arc_make(3, 7.89);
+	T_ARC a2 = arc_make(5, 9.42);
+	L_ARC l = liste_new();
+	l = ajout_tete(a1, l);
+	l = ajout_tete(a2, l);
+	T_SOMMET s;
+	s.nom_noeud = strdup("Paris");
+	s.x = 6.8;
+	s.y = 7.3;
+	s.nom_ligne = strdup("M1");
+	s.voisins = l;
+	//affiche_sommet(&s);
+	//libere_sommet(s);
+
 	//test graphe
+	GRAPHE g = cree_graphe(1);
+	g.tab_s[0] = s;
+	affiche_graphe(g);
+	libere_graphe(g);
 	*/
 
 	/*
@@ -72,10 +90,8 @@ PARTIE DEDIEE AUX TESTS
 	libere_graphe(g);
 	*/
 
-
+	/*
 	//test table de hachage -> ok mais erreur valgrind?
-	GRAPHE g = lecture_fichier(argv[1]);
-
 	H_TABLE ht = ht_make_empty(10);
 	ht_print(hs_print, ht);
 	H_SOMMET hs1 = hs_make(1, "Paris");
@@ -88,8 +104,7 @@ PARTIE DEDIEE AUX TESTS
 	ht_fill(ht, hs4, hs_getn(hs4));
 	ht_print(hs_print, ht);
 	ht_del(hs_del, ht);
-
-	libere_graphe(g);
+	*/
 
 	/*
 	//test remplissage table de hachage depuis graphe
@@ -101,49 +116,19 @@ PARTIE DEDIEE AUX TESTS
 	libere_graphe(g);
 	*/
 
-    //int n = 3;
-    //T_ARC a1;
-	//T_ARC a2;
-    //L_ARC l = NULL;
-    //GRAPHE g = cree_graphe(n);
-    //GRAPHE g1 = lecture_fichier(argv[1]);
-/*
-    a1.arrivee = 7;
-    a1.cout = 2.8;
-    a2.arrivee = 3;
-    a2.cout = 42.666;
+	/*
+	//test recherche d'un hs dans la table
+	GRAPHE g = lecture_fichier(argv[1]);
+	affiche_graphe(g);
+	H_TABLE ht = ht_make_graphe(g);
+	ht_print(hs_print, ht);
+	printf("\nrecherche:");
+	H_SOMMET hs = ht_search(ht, hs_getn, "Grenoble");
+	if (hs) hs_print(hs);
+	ht_del(hs_del, ht);
+	libere_graphe(g);
+	*/
 
-    l = creer_liste();
-    l = ajout_tete(&a1, l);
-    l = ajout_tete(&a2, l);
-	T_SOMMET s = {"paris", 2.4, 2.5, "rerB", l};
-	s.nom_noeud = strdup("pari");
-	s.nom_ligne = strdup("M1");
-	g.tab_s[0] = s;
-    s.nom_noeud = strdup("bla");
-	s.nom_ligne = strdup("M1");
-    g.tab_s[1] = s;
-    s.nom_noeud = strdup("john");
-	s.nom_ligne = strdup("M1");
-    g.tab_s[2] = s;
-*/
-
-	//H_TABLE table_de_hachage = tableh_constr_graphe(g1);
-
-	//printf("%d", hachage((unsigned char*)g1.tab_s[5].nom_noeud, 10*g1.nb_s));
-
-	//affiche_graphe(g);
-    //affiche_graphe(g1);
-
-    //test PCC
-//    L_ARC chemin;
-    //chemin = pcc(g1, 0, 6);
-    //printf("\n\nPCC :\n");
-    //affiche_larc(chemin);
-
-    //libere_graphe(g);
-    //libere_graphe(g1);
-    //libere_sommet(s);
 /*
 
 MAIN EFFECTIF

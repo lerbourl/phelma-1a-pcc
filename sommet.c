@@ -42,6 +42,7 @@ H_SOMMET hs_make(int id, char* nom){
 int hs_geti(H_SOMMET hs){
     return hs->index;
 }
-char* hs_getn(H_SOMMET hs){
+char* hs_getn(void* hs_ambigu){
+    H_SOMMET hs = (H_SOMMET)hs_ambigu;
     return hs->nom_noeud;
 }

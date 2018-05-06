@@ -45,7 +45,7 @@ int ht_print(action element_print, void* ht_ambigu){
 H_TABLE ht_make_empty(int dim){
     H_TABLE ht = ht_new();
     ht->d_table = dim;
-    ht->table = malloc(dim * sizeof(Liste));
+    ht->table = calloc(dim, sizeof(Liste));
     return ht;
 }
 
@@ -56,4 +56,19 @@ int ht_getd(H_TABLE ht){
 void ht_fill(H_TABLE ht, void* element, char* label){
     int h = hachage((unsigned char*)label, ht_getd(ht));
     ht->table[h] = ajout_tete(element, ht->table[h]);
+}
+
+void* ht_search(H_TABLE ht, action_s e_string, char* label){
+    int h = hachage((unsigned char*)label, ht_getd(ht));
+    Liste l = ht->table[h];
+    while (!liste_vide(l)){
+        if (strcmp(label, e_string(lgetval(l)))){
+            l = lgetsuiv(l);
+        }
+        else{
+            return lgetval(l);
+        }
+    }
+    printf("élément non répertorié dans la table de hachage.\n");
+    return NULL;
 }

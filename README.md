@@ -4,6 +4,10 @@
 
 EPALLE COLIN, LERBOURG LOUIS
 
+## Structures
+
+Il est arrivé un moment ou nous avons eu besoin d'utiliser 2 fois le fichier liste, mais pour des éléments différents (liste d'arc et table de hachage). Nous avons alors découvert le type abstrait(merci M. Cayre), et l'utilisation du type void*!!!! Pour des raisons de simplicité, vu l'avancement de notre code, nous n'avons pas adapté toutes nos Structures en type abstrait (ce n'était pas l'envie qui manquait!). Certaines structures sont donc restées "classiques" (graphe, sommet), les autres ont été codées (ou recodée) de manière abstraite, pour des raisons de fonctionnement du code (liste, table de hachage, hach-sommet, arc). C'est l'occasion pour nous de s'entraîner à manipuler le type abstrait, qui est (nous nous en sommes rendu compte) très très utile dans la programmation structurée.
+
 ## Commentaires
 
 Le fichier "liste.h" a été codé lors de projets plus anciens. Dans le but de

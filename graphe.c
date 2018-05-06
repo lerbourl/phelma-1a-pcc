@@ -65,8 +65,7 @@ void libere_graphe(GRAPHE g){
 }
 
 H_TABLE ht_make_graphe(GRAPHE g){
-    H_TABLE ht = ht_make_empty(10 * g.nb_s);
-    ht_print(hs_print, ht);
+    H_TABLE ht = ht_make_empty(3 * g.nb_s);
     H_SOMMET hs;
     int i;
     for (i = 0 ; i<g.nb_s ; i++){
