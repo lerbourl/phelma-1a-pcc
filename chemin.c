@@ -47,10 +47,10 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 		s_atteint[j] = 1;   //j devient atteint
 
 		/* maj du pcc pour tous les voisins de j */
-		for(v=g.tab_s[j].voisins ; v!=NULL ; v=v->suiv) {
-			if (t_pcc[arc_geta(v->val)] > t_pcc[j] + arc_getc(v->val)) {
-				t_pcc[arc_geta(v->val)] = t_pcc[j] + arc_getc(v->val);
-				pere[arc_geta(v->val)] = j;
+		for(v=g.tab_s[j].voisins ; v!=NULL ; v=lgetsuiv(v)) {
+			if (t_pcc[arc_geta((T_ARC)lgetval(v))] > t_pcc[j] + arc_getc((T_ARC)lgetval(v))) {
+				t_pcc[arc_geta((T_ARC)lgetval(v))] = t_pcc[j] + arc_getc((T_ARC)lgetval(v));
+				pere[arc_geta((T_ARC)lgetval(v))] = j;
 			}
 		}
 		old_j = j;    ////////////////////////////////////////////////////

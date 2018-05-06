@@ -38,3 +38,10 @@ H_SOMMET hs_make(int id, char* nom){
     hs->nom_noeud = strdup(nom);
     return hs;
 }
+
+int hs_geti(H_SOMMET hs){
+    return hs->index;
+}
+char* hs_getn(H_SOMMET hs){
+    return hs->nom_noeud;
+}

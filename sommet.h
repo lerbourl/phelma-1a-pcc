@@ -25,5 +25,7 @@ H_SOMMET hs_new(void);
 int hs_del(void*);
 int hs_print(void*);
 H_SOMMET hs_make(int id, char* nom);
+int hs_geti(H_SOMMET);
+char* hs_getn(H_SOMMET);
 
 #endif

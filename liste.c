@@ -2,6 +2,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+struct Liste_t{
+	void* val;
+	struct Liste_t* suiv;
+};
+
 Liste liste_new(){
 	return NULL;
 }
@@ -87,4 +92,11 @@ Liste supprimen(action element_del, int n, Liste l){
 		supprimen(element_del, n - 1, l->suiv);
 	}
 	return l;
+}
+
+void* lgetval(Liste l){
+	return l->val;
+}
+Liste lgetsuiv(Liste l){
+	return l->suiv;
 }

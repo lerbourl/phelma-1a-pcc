@@ -28,8 +28,8 @@ T_ARC arc_make(int arr, float c){
 
 T_ARC trouve_arc(L_ARC larc_d, int a) {
 	L_ARC larc;
-	for (larc=larc_d ; ((T_ARC)larc->val)->arrivee!=a ; larc=larc->suiv);
-	return larc->val;
+	for (larc=larc_d ; ((T_ARC)lgetval(larc))->arrivee!=a ; larc=lgetsuiv(larc));
+	return (T_ARC)lgetval(larc);
 }
 
 int arc_geta(T_ARC a){

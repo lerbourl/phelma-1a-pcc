@@ -6,7 +6,7 @@
 #include "liste.h"
 #include "graphe.h"
 #include "chemin.h"
-#include "hash.h"
+#include "hach.h"
 
 int main(int argc, char* argv[]){
 
@@ -72,7 +72,35 @@ PARTIE DEDIEE AUX TESTS
 	libere_graphe(g);
 	*/
 
-	
+
+	//test table de hachage -> ok mais erreur valgrind?
+	GRAPHE g = lecture_fichier(argv[1]);
+
+	H_TABLE ht = ht_make_empty(10);
+	ht_print(hs_print, ht);
+	H_SOMMET hs1 = hs_make(1, "Paris");
+	H_SOMMET hs2 = hs_make(2, "Lyon");
+	H_SOMMET hs3 = hs_make(3, "Grenoble");
+	H_SOMMET hs4 = hs_make(4, "Paris");
+	ht_fill(ht, hs1, hs_getn(hs1));
+	ht_fill(ht, hs2, hs_getn(hs2));
+	ht_fill(ht, hs3, hs_getn(hs3));
+	ht_fill(ht, hs4, hs_getn(hs4));
+	ht_print(hs_print, ht);
+	ht_del(hs_del, ht);
+
+	libere_graphe(g);
+
+	/*
+	//test remplissage table de hachage depuis graphe
+	GRAPHE g = lecture_fichier(argv[1]);
+	//affiche_graphe(g);
+	H_TABLE ht = ht_make_graphe(g);
+	ht_print(hs_print, ht);
+	ht_del(hs_del, ht);
+	libere_graphe(g);
+	*/
+
     //int n = 3;
     //T_ARC a1;
 	//T_ARC a2;

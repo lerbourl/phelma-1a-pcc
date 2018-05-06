@@ -63,3 +63,15 @@ void libere_graphe(GRAPHE g){
     for (i = 0; i < g.nb_s ; i++) libere_sommet(g.tab_s[i]);
     free(g.tab_s);
 }
+
+H_TABLE ht_make_graphe(GRAPHE g){
+    H_TABLE ht = ht_make_empty(10 * g.nb_s);
+    ht_print(hs_print, ht);
+    H_SOMMET hs;
+    int i;
+    for (i = 0 ; i<g.nb_s ; i++){
+        hs = hs_make(i, g.tab_s[i].nom_noeud);
+        ht_fill(ht, hs, hs_getn(hs));
+    }
+    return ht;
+}

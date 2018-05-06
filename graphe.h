@@ -4,8 +4,8 @@
 #include "arc.h"
 #include "sommet.h"
 #include "erreurctrl.h"
+#include "hach.h"
 #include <string.h>
-
 
 // DEFINITION DE STRUCTURE
 // graphes
@@ -19,5 +19,7 @@ void affiche_graphe(GRAPHE);
 GRAPHE cree_graphe(int);
 GRAPHE lecture_fichier(char*);
 void libere_graphe(GRAPHE);
+
+H_TABLE ht_make_graphe(GRAPHE g);
 
 #endif
