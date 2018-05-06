@@ -44,16 +44,15 @@ GRAPHE lecture_fichier(char* nom_fichier){
         g.tab_s[numero].y = longi;
         g.tab_s[numero].nom_ligne = strdup(line);
         g.tab_s[numero].nom_noeud = strdup(mot);
-        g.tab_s[numero].voisins = creer_liste();
+        g.tab_s[numero].voisins = liste_new();
     }
     fgets(mot,511,f);//ligne "arc du graphe : départ arrivée valeur " ignorée
     for (i = 0; i < na; i++){
         fscanf(f,"%d %d %lf", &(sdep), &(sarr), &(cout));
         /* numéro contient alors l’entier, lat et longi la position, line le nom de la ligne */
         fgets(mot,511,f);
-        a.arrivee = sarr;
-        a.cout = cout;
-        g.tab_s[sdep].voisins = ajout_tete(&a, g.tab_s[sdep].voisins);
+        a = arc_make(sarr, cout);
+        g.tab_s[sdep].voisins = ajout_tete(a, g.tab_s[sdep].voisins);
     }
     fclose(f);
     return g;

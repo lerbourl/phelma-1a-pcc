@@ -2,14 +2,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// a mettre dans larc.c ??? OUI CE SERAIT BIEN
-T_ARC* trouve_arc(GRAPHE g, int d, int a) {
-	L_ARC larc;
-	for (larc=g.tab_s[d].voisins ; ((T_ARC*)larc->val)->arrivee!=a ; larc=larc->suiv);
-	return larc->val;
-}
-
-
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
 
@@ -56,9 +48,9 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 
 		/* maj du pcc pour tous les voisins de j */
 		for(v=g.tab_s[j].voisins ; v!=NULL ; v=v->suiv) {
-			if (t_pcc[((T_ARC*)v->val)->arrivee] > t_pcc[j] + ((T_ARC*)v->val)->cout) {
-				t_pcc[((T_ARC*)v->val)->arrivee] = t_pcc[j] + ((T_ARC*)v->val)->cout;
-				pere[((T_ARC*)v->val)->arrivee] = j;
+			if (t_pcc[arc_geta(v->val)] > t_pcc[j] + arc_getc(v->val)) {
+				t_pcc[arc_geta(v->val)] = t_pcc[j] + arc_getc(v->val);
+				pere[arc_geta(v->val)] = j;
 			}
 		}
 		old_j = j;    ////////////////////////////////////////////////////
@@ -77,9 +69,9 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 	// FIN DEBUG
 
 	/* Creation de chemin a partir de pere */
-	L_ARC chemin = creer_liste();
+	L_ARC chemin = liste_new();
 	for (i=a; i!=d; i=pere[i]) {
-		chemin = ajout_tete(trouve_arc(g, pere[i], i), chemin);
+		chemin = ajout_tete(trouve_arc(g.tab_s[pere[i]].voisins, i), chemin);
 	}
 	return chemin;
 }

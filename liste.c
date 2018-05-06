@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-Liste creer_liste(){
+Liste liste_new(){
 	return NULL;
 }
 int liste_vide(Liste l){
 	return !l;
 }
-void aff_liste(action affiche_element, Liste l){
+void liste_print(action element_print, Liste l){
 	if (!liste_vide(l)){
-		affiche_element(l->val);
-		aff_liste(affiche_element, l->suiv);
+		element_print(l->val);
+		liste_print(element_print, l->suiv);
 	}
 }
 Liste ajout_tete(void* e, Liste l){
@@ -24,19 +24,21 @@ Liste ajout_tete(void* e, Liste l){
 	p->suiv = l;
 	return p;
 }
-Liste supprimer_tete(Liste l){
-	if(liste_vide(l)) return creer_liste();
+Liste liste_tete_del(action element_del, Liste l){
+	if(liste_vide(l)) return liste_new();
 	else{
 		Liste p;
 		p = l->suiv;
+		element_del(l->val);
 		free(l);
 		return p;
 	}
 }
-void lib_liste(Liste l){
+void liste_del(action element_del, Liste l){
 	if (liste_vide(l)) free(l);
 	else{
-		lib_liste(l->suiv);
+		liste_del(element_del, l->suiv);
+		element_del(l->val);
 		free(l);
 	}
 }
@@ -48,7 +50,7 @@ Liste ajout_queue(void* e, Liste l){
 			exit(3);
 		}
 		l->val = e;
-		l->suiv = creer_liste();
+		l->suiv = liste_new();
 		return l;
 	}
 	else{
@@ -66,7 +68,7 @@ Liste concat(Liste l1, Liste l2){
 	}
 }
 Liste copie(Liste l){
-	if (liste_vide(l)) return creer_liste();
+	if (liste_vide(l)) return liste_new();
 	Liste p = malloc(sizeof(*p));
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
@@ -76,13 +78,13 @@ Liste copie(Liste l){
 	p->suiv = copie(l->suiv);
 	return p;
 }
-Liste supprimen(int n, Liste l){
+Liste supprimen(action element_del, int n, Liste l){
 	if (liste_vide(l)) return NULL;
 	if (n == 1){
-		l->suiv = supprimer_tete(l);
+		l->suiv = liste_tete_del(element_del, l);
 	}
 	else{
-		supprimen(n - 1, l->suiv);
+		supprimen(element_del, n - 1, l->suiv);
 	}
 	return l;
 }

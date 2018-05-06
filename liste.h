@@ -1,8 +1,9 @@
 /*
 Structure de liste
-dans le champ val est en fait stocké un pointeur sur l'élément que l'on veut
-ranger dans la liste.
-aff_liste attend que l'on passe en paramètre une fonction de callback
+dans le champ val est en fait stocké un TYPE ABSTRAIT!
+C'est à dire qu'il doit respecter la la forme d'un type abstrait.
+liste_print et liste_del attendent que l'on passe en paramètre
+une fonction de callback.
 */
 #ifndef _LISTE_H_
 #define _LISTE_H_
@@ -15,15 +16,16 @@ struct Liste_t {
 };
 typedef struct Liste_t* Liste;
 
-Liste creer_liste();
+//INTERFACE LISTE
+Liste liste_new();
+void liste_print(action, Liste);
+Liste liste_tete_del(action, Liste) ;
+void liste_del(action, Liste);
 int liste_vide(Liste l);
-void aff_liste(action, Liste);
 Liste ajout_tete(void*, Liste);
-Liste supprimer_tete(Liste l) ;
-void lib_liste(Liste l);
 Liste ajout_queue(void*, Liste);
 Liste concat(Liste l1, Liste l2);
 Liste copie(Liste l);
-Liste supprimen(int n, Liste l);
+Liste supprimen(action element_del, int n, Liste l);
 
 #endif
