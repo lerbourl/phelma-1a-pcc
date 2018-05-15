@@ -6,10 +6,10 @@ Sommets du graphe
 3	0.2	0.5	M1	ampcnqq
 4	0.2	0.1	M1	Paris
 5	0.4	0.7	M1	adzodSS
-6	0.4	0.5	M1	zdzf
+6	0.4	0.5	M1	Grenoble
 7	0.4	0.3	M1	Grenoble
 8	0.6	0.9	M1	JDZHIUZZ
-9	0.6	0.5	M1	Lyon
+9	0.6	0.5	M1	Ly on
 10	0.6	0.1	M1	Lyon
 11	0.8	0.7	M1	zefuiefhziezzhu
 12	0.8	0.3	M1	Marseille

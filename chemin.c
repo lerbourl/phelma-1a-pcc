@@ -26,7 +26,8 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 	//Algo
 	double min;
 	int j;
-	int old_j;   //////////////////////////////////////////////// sert dans la détection du cas ou il n'y a pas de solution
+	int old_j = -1;	// sert dans la détection du cas ou il n'y a pas de solution
+					// =-1 pour qu'il soit bien initialisé avant d'être comparé
 	L_ARC v;
 	do {
 		/* recherche du sommet j dans C avec le pcc */
@@ -39,6 +40,7 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 				}
 			}
 		}
+
 		if (old_j==j) {		// pas de min != INF nonn atteint trouvé			///////////////////////////////////////////////////////////
 			// cas pas de solution    equivalent au test pcc[j]!= +inf    ///////////////////////////////////////////////////////////
 			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau\n");

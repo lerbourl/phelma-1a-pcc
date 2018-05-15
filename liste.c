@@ -43,7 +43,7 @@ void liste_del(action element_del, Liste l){
 	if (liste_vide(l)) free(l);
 	else{
 		liste_del(element_del, l->suiv);
-		element_del(l->val);
+		if (element_del) element_del(l->val);
 		free(l);
 	}
 }
