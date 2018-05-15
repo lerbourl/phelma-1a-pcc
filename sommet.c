@@ -19,7 +19,7 @@ void libere_sommet(T_SOMMET s){
 }
 
 H_SOMMET hs_new(void){
-    H_SOMMET hs = malloc(1 * sizeof(*hs));
+    H_SOMMET hs = calloc(1, sizeof(*hs));
     return hs;
 }
 int hs_del(void* hs_ambigu){

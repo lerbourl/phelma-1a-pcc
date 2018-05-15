@@ -7,17 +7,24 @@ struct ht_t{
     int d_table;
 };
 
+//renvoie l'indice de hachage
 unsigned int hachage(unsigned char* mot, int dim_tab_hach){
-    int h = tolower(mot[0]), i = 1;
-    while(tolower(mot[i])){
-        h = (h*31 + tolower(mot[i])) % dim_tab_hach;
+    int i = 0;
+    while(mot[i] != 0){
+        mot[i] = tolower(mot[i]);
+        i++;
+    }
+    i = 0;
+    int h = mot[0];
+    while(mot[i]){
+        h = (h*31 + mot[i]) % dim_tab_hach;
         i++;
     }
     return h;
 }
 
 H_TABLE ht_new(void){
-    H_TABLE ht = malloc(1 * sizeof(*ht));
+    H_TABLE ht = calloc(1, sizeof(*ht));
     return ht;
 }
 
@@ -69,6 +76,6 @@ void* ht_search(H_TABLE ht, action_s e_string, char* label){
             return lgetval(l);
         }
     }
-    printf("élément non répertorié dans la table de hachage.\n");
+    printf("\nélément non répertorié dans la table de hachage:%s\n", label);
     return NULL;
 }

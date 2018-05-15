@@ -31,7 +31,7 @@ GRAPHE lecture_fichier(char* nom_fichier){
     err_ctrl(f, "erreur ouverture de fichier: ", __FILE__, __func__, __LINE__, nom_fichier);
     fscanf(f, "%d %d", &ns, &na); //nombre de sommets et arcs
     g = cree_graphe(ns);
-    fgets(mot,511,f); //?
+    fgets(mot,511,f); //saut du \n
     fgets(mot,511,f);//ligne "Sommets du graphe" ignorée
     for (i = 0; i < ns; i++){
         fscanf(f,"%d %lf %lf %s", &(numero), &(lat), &(longi), line);
