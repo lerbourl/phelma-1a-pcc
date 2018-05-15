@@ -19,6 +19,7 @@ T_ARC arc_make(int arr, float c);
 
 int arc_geta(T_ARC);
 int arc_getc(T_ARC);
-T_ARC trouve_arc(L_ARC larc_d, int a);
+
+T_ARC trouve_arc(L_ARC larc_d, int a);    //func utile dans la recherche du pcc
 
 #endif

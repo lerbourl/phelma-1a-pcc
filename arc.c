@@ -15,8 +15,8 @@ int arc_del(void* a){
     free(a);
     return 0;
 }
-int arc_print(void* a_ambigu){
-    T_ARC a = (T_ARC)a_ambigu;
+int arc_print(void* a_ambigu){                                        // mais en fait tu aurais du faire :
+    T_ARC a = (T_ARC)a_ambigu;                                        // int arc_print(action func_print, void* arc)
     return printf("  ARC arrivee:%d cout:%f\n", a->arrivee, a->cout);
 }
 T_ARC arc_make(int arr, float c){
