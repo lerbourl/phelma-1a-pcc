@@ -42,13 +42,8 @@ Liste liste_tete_del(action element_del, Liste l){
 void liste_del(action element_del, Liste l){
 	if (liste_vide(l)) free(l);
 	else{
-<<<<<<< HEAD
 		liste_del(element_del, l->suiv);                           // PQ t'utilise pas liste_tete_del
-		element_del(l->val);
-=======
-		liste_del(element_del, l->suiv);
-		if (element_del) element_del(l->val);
->>>>>>> 60eaa7705b108d1a2b76f7a029138d73b28bb3ef
+		if (element_del) element_del(l->val);                      // a quoi ca sert le if ?
 		free(l);
 	}
 }
