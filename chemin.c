@@ -12,10 +12,18 @@ double cout_chemin(L_ARC chemin) {
 	return somme;
 }   
 
-
-
-
-
+void corresp_set_zero(GRAPHE g, H_SOMMET hs) {
+    L_ARC larc;
+    for(larc=g.tab_s[hs_geti(hs)].voisins ; !liste_vide(larc) ; larc=lgetsuiv(larc)) {
+        printf(" DEBU   %s     %s\n", g.tab_s[hs_geti(hs)].nom_noeud, g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
+        if (!strcmp(g.tab_s[hs_geti(hs)].nom_noeud, g.tab_s[arc_geta(lgetval(larc))].nom_noeud)) {     // avec (hs_getn(hs) == g.tab_s[arc_geta(lgetval(larc))].nom_noeud)  => prob de majuscule/minuscule
+            //il faut test cout == 360 pour etre sur que ça marche
+            printf("DEBUG  %s\n", g.tab_s[hs_geti(hs)].nom_noeud );
+            arc_setc(lgetval(larc), 0);                
+        }
+    }
+}
+    
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
 

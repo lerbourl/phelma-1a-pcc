@@ -30,7 +30,7 @@ T_ARC trouve_arc(L_ARC larc_d, int a) {
     /* ATTENTION pas de gestion du cas sommet d n'a pas de voisins
 	=> pas grave pour son utilisation dans ppc */
 	L_ARC larc;
-	for (larc=larc_d ; ((T_ARC)lgetval(larc))->arrivee!=a ; larc=lgetsuiv(larc));
+	for (larc=larc_d ; ((T_ARC)lgetval(larc))->arrivee!=a ; larc=lgetsuiv(larc));       //arc_geta((T_ARC)lgetval(larc))!=a
 	return (T_ARC)lgetval(larc);
 }
 
@@ -39,4 +39,8 @@ int arc_geta(T_ARC a){
 }
 int arc_getc(T_ARC a){
     return a->cout;
+}
+
+void arc_setc(T_ARC a, double new_cout) {
+    a->cout = new_cout;
 }

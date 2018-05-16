@@ -156,7 +156,12 @@ MAIN EFFECTIF
 	getchar ();
 	H_SOMMET hs2 = ht_search(ht, hs_getn, ns2);
 	err_ctrl(hs2, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
-
+    
+    /* gestion des correspondance */
+    corresp_set_zero(g, hs1);  // correspondance station de départ
+    // correspondance station de arrivée gérer dans pcc ?????
+    
+    
 	/* plus court chemin */
 	printf("\ncalcul du plus court chemin en cours...");
     printf("\nindex s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
@@ -165,7 +170,7 @@ MAIN EFFECTIF
     double cout_total = cout_chemin(chemin);
     
     if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
-        printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(hs1), hs_getn(hs1), hs_geti(hs2), hs_getn(hs2));
+        printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(hs1), g.tab_s[hs_geti(hs1)].nom_noeud, hs_geti(hs2), g.tab_s[hs_geti(hs2)].nom_noeud);
         liste_print(arc_print, chemin);
         printf("\nCout Total : %lf\n", cout_total);
     }
