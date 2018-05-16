@@ -2,6 +2,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+
+double cout_chemin(L_ARC chemin) {
+    L_ARC larc;
+	double somme = 0;
+	for (larc=chemin ; !liste_vide(larc) ; larc=lgetsuiv(larc)) {
+		somme += arc_getc((T_ARC)lgetval(larc));
+	}
+	return somme;
+}   
+
+
+
+
+
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
 
@@ -43,7 +57,7 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 
 		if (old_j==j) {		// pas de min != INF nonn atteint trouvé			///////////////////////////////////////////////////////////
 			// cas pas de solution    equivalent au test pcc[j]!= +inf    ///////////////////////////////////////////////////////////
-			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau\n");
+			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau (ou à contre-sens)\n");
 			return NULL;
 		}      										///////////////////////////////////////////////////////////
 		s_atteint[j] = 1;   //j devient atteint

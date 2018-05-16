@@ -132,22 +132,24 @@ PARTIE DEDIEE AUX TESTS
 MAIN EFFECTIF
 */
 	char* nom_fichier = argv[1];
+    printf("\nlecture du fichier %s et création du graphe ...", nom_fichier);
 	GRAPHE g = lecture_fichier(nom_fichier);
 	//affiche_graphe(g);
+    printf("\ncréation de la table de hachage ...");
 	H_TABLE ht = ht_make_graphe(g);
-	printf("lecture du fichier %s", nom_fichier);
-	printf("\nrecherche du plus court chemin entre deux sommets du graphe");
+	
+    printf("\nrecherche du plus court chemin entre deux sommets du graphe");
 	char ns1[100];
 	char ns2[100];
-	// réupération de la chaine de manière sécurisée
-	printf("\nentrez le nom du 1er sommet:");
+	/* réupération de la chaine de manière sécurisée */
+	printf("\nentrez le nom du 1er sommet:");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
 	scanf ("%99[^\n]s", ns1);	// 99 caractères, tout sauf \n
 	scanf ("%*[^\n]");	// si buffer éxcédent on le vide
 	getchar (); 	// on vide le \n du buffer
-	// recherche dans la table
+	/* recherche dans la table */
 	H_SOMMET hs1 = ht_search(ht, hs_getn, ns1);
 	err_ctrl(hs1, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
-	// idem sommet 2
+	/* idem sommet 2 */
 	printf("\nentrez le nom du 2nd sommet:");
 	scanf ("%99[^\n]s", ns2);
 	scanf ("%*[^\n]");
@@ -155,20 +157,26 @@ MAIN EFFECTIF
 	H_SOMMET hs2 = ht_search(ht, hs_getn, ns2);
 	err_ctrl(hs2, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
 
-	// plus court chemin
+	/* plus court chemin */
 	printf("\ncalcul du plus court chemin en cours...");
-	printf("\nindex s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
+    printf("\nindex s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
+    
+    L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
+    double cout_total = cout_chemin(chemin);
+    
+    if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
+        printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(hs1), hs_getn(hs1), hs_geti(hs2), hs_getn(hs2));
+        liste_print(arc_print, chemin);
+        printf("\nCout Total : %lf\n", cout_total);
+    }
 
-	L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
-	liste_print(arc_print, chemin);
-
-	// libération des structures
+	/* libération des structures */
 	liste_del(NULL, chemin);	// ici, on ne libère pas les éléments de la
 								// liste d'arcs, c'est fait dans libère graphe!
 	ht_del(hs_del, ht);	// hs1 et hs2 se libèrent déjà ici
 	libere_graphe(g);
 
-	// timer éxecution
+	/* timer éxecution */
     printf("\nFIN TIMER : %fs\n", (double)(clock() - timer)/CLOCKS_PER_SEC);
     return EXIT_SUCCESS;
 }

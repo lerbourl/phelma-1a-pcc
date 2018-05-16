@@ -20,7 +20,7 @@ void liste_print(action element_print, Liste l){
 	}
 }
 Liste ajout_tete(void* e, Liste l){
-	Liste p = calloc(1,sizeof(*p));                                         // c'etait quoi la réponse du prof pour diff entre malloc et calloc ?
+	Liste p = calloc(1,sizeof(*p)); 
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
 		exit(2);
@@ -42,8 +42,8 @@ Liste liste_tete_del(action element_del, Liste l){
 void liste_del(action element_del, Liste l){
 	if (liste_vide(l)) free(l);
 	else{
-		liste_del(element_del, l->suiv);                           // PQ t'utilise pas liste_tete_del
-		if (element_del) element_del(l->val);                      // a quoi ca sert le if ?
+		liste_del(element_del, l->suiv); 
+		if (element_del) element_del(l->val); 
 		free(l);
 	}
 }
@@ -51,11 +51,11 @@ Liste ajout_queue(void* e, Liste l){
 	if (liste_vide(l)){
 		l = calloc(1,sizeof(*l));
 		if (l == NULL){
-			printf("\nerreur malloc %s %s", __FILE__, __func__);                       // c'est quoi __FILE__ et __func__ ?
+			printf("\nerreur malloc %s %s", __FILE__, __func__);
 			exit(3);
 		}
 		l->val = e;
-		l->suiv = liste_new();                                                         // liste_new plutot que NULL pour si jamais on decide de changer le marqueur fin de liste
+		l->suiv = liste_new();
 		return l;
 	}
 	else{

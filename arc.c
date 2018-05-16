@@ -15,8 +15,8 @@ int arc_del(void* a){
     free(a);
     return 0;
 }
-int arc_print(void* a_ambigu){                                        // mais en fait tu aurais du faire :
-    T_ARC a = (T_ARC)a_ambigu;                                        // int arc_print(action func_print, void* arc)
+int arc_print(void* a_ambigu){ 
+    T_ARC a = (T_ARC)a_ambigu;
     return printf("  ARC arrivee:%d cout:%f\n", a->arrivee, a->cout);
 }
 T_ARC arc_make(int arr, float c){
@@ -27,6 +27,8 @@ T_ARC arc_make(int arr, float c){
 }
 
 T_ARC trouve_arc(L_ARC larc_d, int a) {
+    /* ATTENTION pas de gestion du cas sommet d n'a pas de voisins
+	=> pas grave pour son utilisation dans ppc */
 	L_ARC larc;
 	for (larc=larc_d ; ((T_ARC)lgetval(larc))->arrivee!=a ; larc=lgetsuiv(larc));
 	return (T_ARC)lgetval(larc);

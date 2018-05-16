@@ -7,4 +7,6 @@
 
 L_ARC pcc(GRAPHE, int, int);
 
+double cout_chemin(L_ARC chemin);
+
 #endif

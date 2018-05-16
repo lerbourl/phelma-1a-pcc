@@ -32,7 +32,7 @@ int ht_del(action element_del, void* ht_ambigu){
     H_TABLE ht = (H_TABLE)ht_ambigu;
     int i;
     for (i = 0 ; i<ht->d_table ; i++) liste_del(element_del, ht->table[i]);
-    free(ht->table);
+    free(ht->table);                                                                    // free(ht); ne suffit pas ?
     free(ht);
     return 0;
 }
@@ -66,6 +66,8 @@ void ht_fill(H_TABLE ht, void* element, char* label){
 }
 
 void* ht_search(H_TABLE ht, action_s e_string, char* label){
+    /* ATTENTION renvoie que la 1ere itération du label trouvé
+    si station avec meme nom => en revoie qu'une */
     int h = hachage((unsigned char*)label, ht_getd(ht));
     Liste l = ht->table[h];
     while (!liste_vide(l)){
