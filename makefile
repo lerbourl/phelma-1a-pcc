@@ -1,6 +1,7 @@
 #
 # Le makefile du projet 1a phelma. Tapper "make" cree l'executable "pcc". Tapper
 # "make clean" efface les .o, l'exécutable et permet de recharger les .h.
+# make tests génère un éxécuable de tests
 
 #
 # definition de variables
@@ -24,6 +25,7 @@ OBJS_tests = $(SRCS:.c=.o tests.o)
 
 # l'executable
 EXC = pcc
+TST = tests
 
 #
 # build generique
@@ -40,4 +42,4 @@ tests: $(OBJS_tests)
 		$(CC) -o $@ -c $< $(CFLAGS)
 
 clean:
-		$(RM) *.o *~ $(EXC)
+		$(RM) *.o *~ $(EXC) $(TST)

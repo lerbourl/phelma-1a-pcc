@@ -1,7 +1,7 @@
 /*
-Structure de liste TYPE ABSTRAIT
+Structure de liste
 dans le champ val est en fait stocké un TYPE ABSTRAIT!
-C'est à dire qu'il doit respecter la la forme d'un type abstrait.
+C'est à dire qu'il doit respecter la forme d'un type abstrait.
 liste_print et liste_del attendent que l'on passe en paramètre
 une fonction de callback.
 */

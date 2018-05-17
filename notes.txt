@@ -1,3 +1,5 @@
+# notes utiles aux collaborateurs
+
 # Projet en cours: Plus court chemin entre sommets d'un graphe
 
 ## Collaborateurs
