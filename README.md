@@ -45,11 +45,29 @@ Arêtes du graphe : noeud1 noeud2 valeur
 on peut tester les fuites de mémoire, et récupérer ce que retourne le programme en cas d'erreur avec la commande suivante:
 `valgrind --leak-check=full ./pcc nom_du_graphe.txt ; echo $?`
 
-## Executer les tests
+### que faire ensuite?
+
+Entrer le nom de deux sommets du graphes, et laissez à nos algorithmes le temps de vous trouver l'absolu plus court chemin ! Vous n'avez pas à vous soucier des majuscules/minuscules !
+
+## Tests et erreurs
+
+### Compilation
 
 `make tests`
+
+### Exécution
+
 `valgrind --leak-check=full ./tests nom_du_graphe.txt ; echo $?`
 conseil : lire le code de tests.c en parallèle pour comprendre la pertinence des tests.
+
+### Recupération des erreurs d'exit
+
+* gerées par `err_ctrl()` : 2
+* 0 pas d'erreurs
+* 1 erreur non définie
+* 2 erreur calloc `ajout_tete` (liste.c)
+* 3 erreur calloc `supprimer_tete` (liste.c)
+* 4 erreur calloc `copie` (liste.c)
 
 ## Logiciels qui ont servi
 
@@ -62,4 +80,4 @@ conseil : lire le code de tests.c en parallèle pour comprendre la pertinence de
 * Colin EPALLE
 * Louis LERBOURG
 
-Voir la liste des cntributeurs [contributors](https://github.com/lerbourl/phelma-1a-pcc/graphs/contributors)
+Voir la liste des contributeurs [contributors](https://github.com/lerbourl/phelma-1a-pcc/graphs/contributors)
