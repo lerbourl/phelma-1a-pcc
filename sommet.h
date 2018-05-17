@@ -12,7 +12,7 @@ typedef struct {
     char* nom_ligne; // graphe metro par exemple
     L_ARC voisins;} T_SOMMET;
 
-// sommets contenant les infos utile pour une table de hachage TYPE ABSTRAIT!
+// sommets contenant les infos utile pour une table de hachage
 struct hs_t;
 typedef struct hs_t *H_SOMMET;
 

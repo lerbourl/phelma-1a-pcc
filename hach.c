@@ -8,8 +8,9 @@ struct ht_t{
 };
 
 //renvoie l'indice de hachage
-unsigned int hachage(unsigned char* mot, int dim_tab_hach){
+unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
     int i = 0;
+    char* mot = strdup((char*)mot_non_alloue);
     while(mot[i] != 0){
         mot[i] = tolower(mot[i]);
         i++;
@@ -20,6 +21,7 @@ unsigned int hachage(unsigned char* mot, int dim_tab_hach){
         h = (h*31 + mot[i]) % dim_tab_hach;
         i++;
     }
+    free(mot);
     return h;
 }
 

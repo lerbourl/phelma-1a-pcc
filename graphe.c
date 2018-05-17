@@ -18,7 +18,7 @@ GRAPHE cree_graphe(int n){
     err_ctrl(g.tab_s, "erreur malloc", __FILE__, __func__, __LINE__, "");
     return g;
 }
-
+// construction d'un graphe à partir d'un fichier corrctement formaté
 GRAPHE lecture_fichier(char* nom_fichier){
     GRAPHE g; // le graphe destiné à être renvoyé
     T_ARC a; // c'est un buffer qui remplira les voisins des sommets
