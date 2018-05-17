@@ -81,3 +81,9 @@ void* ht_search(H_TABLE ht, action_s e_string, char* label){
     printf("\nélément non répertorié dans la table de hachage:%s\n", label);
     return NULL;
 }
+
+
+Liste find_l_hs(H_TABLE ht, char* nom_noeud) {
+	unsigned int hash = hachage((unsigned char*)nom_noeud, ht_getd(ht));
+	return ht->table[hash];
+}
