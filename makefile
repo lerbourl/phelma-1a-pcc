@@ -16,10 +16,11 @@ CFLAGS = -Wall -g
 LIBS = -lm
 
 # les sources C
-SRCS = main.c arc.c sommet.c liste.c erreurctrl.c hach.c graphe.c chemin.c
+SRCS = arc.c sommet.c liste.c erreurctrl.c hach.c graphe.c chemin.c
 
 # les objets C
-OBJS = $(SRCS:.c=.o)
+OBJS_pcc = $(SRCS:.c=.o main.o)
+OBJS_tests = $(SRCS:.c=.o tests.o)
 
 # l'executable
 EXC = pcc
@@ -29,7 +30,10 @@ EXC = pcc
 all:	$(EXC)
 		@echo executable pcc est compilé avec succès!!
 
-pcc: $(OBJS)
+pcc: $(OBJS_pcc)
+		$(CC) -o $@ $^ $(LIBS)
+
+tests: $(OBJS_tests)
 		$(CC) -o $@ $^ $(LIBS)
 
 %.o: %.c
