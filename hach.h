@@ -24,5 +24,6 @@ H_TABLE ht_make_empty(int dim);
 int ht_getd(H_TABLE);
 void ht_fill(H_TABLE ht, void* element, char* label);
 void* ht_search(H_TABLE ht, action_s e_string, char* label);
+Liste find_l_hs(H_TABLE ht, char* nom_noeud);
 
 #endif

@@ -13,17 +13,17 @@ int main(int argc, char* argv[]){
 	int timer = clock();
 
 	char* nom_fichier = argv[1];
-    printf("\nlecture du fichier %s et création du graphe ...", nom_fichier);
+    printf("\nlecture du fichier %s et création du graphe ...\n", nom_fichier);
 	GRAPHE g = lecture_fichier(nom_fichier);
 	//affiche_graphe(g);
-    printf("\ncréation de la table de hachage ...");
+    printf("création de la table de hachage ...\n");
 	H_TABLE ht = ht_make_graphe(g);
 
-    printf("\nrecherche du plus court chemin entre deux sommets du graphe");
+	printf("recherche du plus court chemin entre deux sommets du graphe\n");
 	char ns1[100];
 	char ns2[100];
 	/* réupération de la chaine de manière sécurisée */
-	printf("\nentrez le nom du 1er sommet:");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
+	printf("\nentrez le nom du 1er sommet: ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
 	scanf ("%99[^\n]s", ns1);	// 99 caractères, tout sauf \n
 	scanf ("%*[^\n]");	// si buffer éxcédent on le vide
 	getchar (); 	// on vide le \n du buffer
@@ -31,7 +31,7 @@ int main(int argc, char* argv[]){
 	H_SOMMET hs1 = ht_search(ht, hs_getn, ns1);
 	err_ctrl(hs1, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
 	/* idem sommet 2 */
-	printf("\nentrez le nom du 2nd sommet:");
+	printf("\nentrez le nom du 2nd sommet: ");
 	scanf ("%99[^\n]s", ns2);
 	scanf ("%*[^\n]");
 	getchar ();
@@ -39,14 +39,16 @@ int main(int argc, char* argv[]){
 	err_ctrl(hs2, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
 
     /* gestion des correspondance */
-    corresp_set_zero(g, hs1);  // correspondance station de départ
-    // correspondance station de arrivée gérer dans pcc ?????
 
-
+	printf("\ngestion des correspondances sur les stations d'arrivée et de départ...\n");
+    corresp_set_zero(g, ht, hs1);  // correspondance station de départ
+    corresp_set_zero(g, ht, hs2);  // correspondance station de arrivée
+    
+    
 	/* plus court chemin */
-	printf("\ncalcul du plus court chemin en cours...");
-    printf("\nindex s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
-
+	printf("calcul du plus court chemin en cours...\n");
+    printf("index s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
+    
     L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
     double cout_total = cout_chemin(chemin);
 

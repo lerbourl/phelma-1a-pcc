@@ -42,7 +42,7 @@ T_ARC trouve_arc(L_ARC larc_d, int a) {
 int arc_geta(T_ARC a){
     return a->arrivee;
 }
-int arc_getc(T_ARC a){
+double arc_getc(T_ARC a){
     return a->cout;
 }
 
