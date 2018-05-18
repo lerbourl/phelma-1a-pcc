@@ -21,6 +21,9 @@ void affiche_sommet(T_SOMMET*);
 void libere_sommet(T_SOMMET);
 
 // INTERFACE SOMMET HACHAGE
+/*
+Interface GENERIQUE
+*/
 H_SOMMET hs_new(void);
 int hs_del(void*);
 int hs_print(void*);

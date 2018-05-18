@@ -1,5 +1,6 @@
 /*
 construit une table de hachage depuis un tableau d'elements
+(structure de données abstraites)
 */
 
 #ifndef _HASH_H_

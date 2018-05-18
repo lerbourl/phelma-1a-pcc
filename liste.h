@@ -1,5 +1,5 @@
 /*
-Structure de liste
+Structure de liste (structure de données abstraites)
 dans le champ val est en fait stocké un TYPE ABSTRAIT!
 C'est à dire qu'il doit respecter la forme d'un type abstrait.
 liste_print et liste_del attendent que l'on passe en paramètre

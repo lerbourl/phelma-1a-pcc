@@ -7,6 +7,10 @@ struct arc_t{
     double cout;
 };
 
+/*
+Interface GENERIQUE
+*/
+
 T_ARC arc_new(void){
     T_ARC a = calloc(1, sizeof(*a));
     return a;
@@ -15,8 +19,8 @@ int arc_del(void* a){
     free(a);
     return 0;
 }
-int arc_print(void* a_ambigu){ 
-    T_ARC a = (T_ARC)a_ambigu;
+int arc_print(void* a_ambigu){
+    T_ARC a = (T_ARC)a_ambigu;  // a est bien un T_ARC, l'ambiguité du void* est levée
     return printf("  ARC arrivee:%d cout:%f\n", a->arrivee, a->cout);
 }
 T_ARC arc_make(int arr, float c){
@@ -26,6 +30,7 @@ T_ARC arc_make(int arr, float c){
     return a;
 }
 
+// trouve dans la liste larc_d, l'arc d'indice a et le retourne. (l'arrivée)
 T_ARC trouve_arc(L_ARC larc_d, int a) {
     /* ATTENTION pas de gestion du cas sommet d n'a pas de voisins
 	=> pas grave pour son utilisation dans ppc */
