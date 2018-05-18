@@ -21,7 +21,6 @@ unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
         h = (h*31 + mot[i]) % dim_tab_hach;
         i++;
     }
-    printf("%s: %d\n",mot, h);
     free(mot);
     return h;
 }
