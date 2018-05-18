@@ -21,6 +21,7 @@ unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
         h = (h*31 + mot[i]) % dim_tab_hach;
         i++;
     }
+    printf("%s: %d\n",mot, h);
     free(mot);
     return h;
 }
@@ -73,7 +74,7 @@ void* ht_search(H_TABLE ht, action_s e_string, char* label){
     int h = hachage((unsigned char*)label, ht_getd(ht));
     Liste l = ht->table[h];
     while (!liste_vide(l)){
-        if (strcmp(label, e_string(lgetval(l)))){
+        if (strcasecmp(label, e_string(lgetval(l)))){
             l = lgetsuiv(l);
         }
         else{
