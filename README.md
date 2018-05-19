@@ -49,6 +49,9 @@ on peut tester les fuites de mémoire, et récupérer ce que retourne le program
 
 Entrer le nom de deux sommets du graphes, et laissez à nos algorithmes le temps de vous trouver l'absolu plus court chemin ! Vous n'avez pas à vous soucier des majuscules/minuscules !
 
+ATTENTION
+Pour les caractères avec accents ou cédille, les fonctions de changement de case ne fonctionnent pas, il faut rentrer la bonne case.
+
 ## Tests et erreurs
 
 ### Compilation

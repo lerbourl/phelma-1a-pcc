@@ -1,4 +1,4 @@
-14	29
+14	28
 Sommets du graphe
 0	0.05 0.7	M1	kjnjzenf
 1	0.05 0.3	M1	dfkezoao
