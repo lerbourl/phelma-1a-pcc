@@ -10,6 +10,7 @@ L_ARC pcc(GRAPHE, int, int);
 
 double cout_chemin(L_ARC chemin);
 void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs);
-void affiche_chemin_ds_graphe(H_SOMMET, H_SOMMET, GRAPHE);
+L_ARC chemin_supr_zero(L_ARC, int*, int*);
+void affiche_chemin(L_ARC, GRAPHE);
 
 #endif

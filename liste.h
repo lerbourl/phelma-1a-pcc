@@ -26,5 +26,6 @@ Liste copie(Liste l);
 Liste supprimen(action element_del, int n, Liste l);
 void* lgetval(Liste);
 Liste lgetsuiv(Liste);
+void lsetsuiv(Liste l, Liste s);
 
 #endif

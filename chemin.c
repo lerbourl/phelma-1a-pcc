@@ -12,20 +12,15 @@ double cout_chemin(L_ARC chemin) {
 	return somme;
 }
 
-void affiche_chemin_ds_graphe(H_SOMMET d, H_SOMMET a, GRAPHE g){
-    L_ARC chemin = pcc(g, hs_geti(d), hs_geti(a));
+void affiche_chemin(L_ARC chemin, GRAPHE g){
+    printf("\nsuivre l'itinéraire:");
     if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
-    double cout_total = cout_chemin(chemin);
-    printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(d), g.tab_s[hs_geti(d)].nom_noeud, hs_geti(a), g.tab_s[hs_geti(a)].nom_noeud);
         L_ARC larc;
     	for (larc=chemin; (larc) ; larc=lgetsuiv(larc)){
-            printf("\n|--> %s\n        ", g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
+            printf("\n--%s--> %s\n", g.tab_s[arc_geta(lgetval(larc))].nom_ligne, g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
             arc_print(lgetval(larc));
         }
-        printf("\nCout Total : %lf\n", cout_total);
     }
-    liste_del(NULL, chemin); // ici, on ne libère pas les éléments de la
-							 // liste d'arcs, c'est fait dans libère graphe!
 }
 
 void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
@@ -33,16 +28,14 @@ void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	Liste l_voisins;
 
 	// parcours de la liste de hash coorespondante au nom du nom_noeud
-	for (l_hs=find_l_hs(ht, hs_getn(hs)) ; liste_vide(l_hs) ; l_hs=lgetsuiv(l_hs)) {
+	for (l_hs=find_l_hs(ht, hs_getn(hs)) ; !liste_vide(l_hs) ; l_hs=lgetsuiv(l_hs)) {
 		// selection les sommets en correspondance (vérif si c'est pas une colision dans la table de hachage)
 		if (!strcmp(hs_getn(lgetval(l_hs)), hs_getn(hs) ) ) {
 			// parcours de la liste des voisins pour chaque sommet de la correspondance
 			for (l_voisins=g.tab_s[hs_geti(lgetval(l_hs))].voisins ; !liste_vide(l_voisins) ; l_voisins=lgetsuiv(l_voisins)) {
-				printf("DEBUG CORRESP  ALL i: %d (%s) --> i: %d (%s)\nCOUT : %lf\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)));
 				// si voisin est dans la m^eme station => cout de l'arc mis à 0
 				if (!strcmp( g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud, g.tab_s[hs_geti(hs)].nom_noeud ) ) {  // utilisation de g.tab_s[hs_geti(hs)].nom_noeud plutot que (hs_getn(hs) pour régler les problèmes de MAJ/min
 					// IL FAUT TEST COUT == 360 POUR ETRE SUR QUE ÇA MARCH
-					printf("DEBUG CORRESP SET0 i: %d (%s) --> i: %d (%s)\nCOUT : %lf\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)));
 					arc_setc(lgetval(l_voisins), 0);
 				}
 			}
@@ -50,6 +43,27 @@ void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	}
 }
 
+L_ARC chemin_supr_zero(L_ARC chemin, int* pd, int* pa){
+    // on supprime le premier élément si le coût est 0
+    while(arc_getc(lgetval(chemin)) == 0){
+        *pd = arc_geta(lgetval(chemin));
+        chemin = liste_tete_del(NULL, chemin);
+    }
+    L_ARC larc = chemin;
+    while (larc){ //on veut supprimer le dernier élément si le coût est 0!
+        if (lgetsuiv(larc) && arc_getc(lgetval(lgetsuiv(larc))) == 0){
+            *pa = arc_geta(lgetval(larc));
+            liste_del(NULL, lgetsuiv(larc));
+            lsetsuiv(larc, liste_new());
+            larc = lgetsuiv(larc);
+        }
+        else{
+            larc = lgetsuiv(larc);
+        }
+    }
+
+    return chemin;
+}
 
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
@@ -93,7 +107,10 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 		if (old_j==j) {		// pas de min != INF nonn atteint trouvé			///////////////////////////////////////////////////////////
 			// cas pas de solution    equivalent au test pcc[j]!= +inf    ///////////////////////////////////////////////////////////
 			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau (ou à contre-sens)\n");
-			return NULL;
+            free(t_pcc);
+        	free(pere);
+        	free(s_atteint);
+            return NULL;
 		}      										///////////////////////////////////////////////////////////
 		s_atteint[j] = 1;   //j devient atteint
 
