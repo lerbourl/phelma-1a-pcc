@@ -12,20 +12,15 @@ double cout_chemin(L_ARC chemin) {
 	return somme;
 }
 
-void affiche_chemin_ds_graphe(H_SOMMET d, H_SOMMET a, GRAPHE g){
-    L_ARC chemin = pcc(g, hs_geti(d), hs_geti(a));
+void affiche_chemin(L_ARC chemin, GRAPHE g){
+    printf("\nsuivre l'itinéraire:");
     if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
-    double cout_total = cout_chemin(chemin);
-    printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(d), g.tab_s[hs_geti(d)].nom_noeud, hs_geti(a), g.tab_s[hs_geti(a)].nom_noeud);
         L_ARC larc;
     	for (larc=chemin; (larc) ; larc=lgetsuiv(larc)){
-            printf("\n|--> %s\n        ", g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
+            printf("\n--%s--> %s\n", g.tab_s[arc_geta(lgetval(larc))].nom_ligne, g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
             arc_print(lgetval(larc));
         }
-        printf("\nCout Total : %lf\n", cout_total);
     }
-    liste_del(NULL, chemin); // ici, on ne libère pas les éléments de la
-							 // liste d'arcs, c'est fait dans libère graphe!
 }
 
 void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
@@ -51,6 +46,27 @@ void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	}
 }
 
+L_ARC chemin_supr_zero(L_ARC chemin, int* pd, int* pa){
+    // on supprime le premier élément si le coût est 0
+    while(arc_getc(lgetval(chemin)) == 0){
+        *pd = arc_geta(lgetval(chemin));
+        chemin = liste_tete_del(NULL, chemin);
+    }
+    L_ARC larc = chemin;
+    while (larc){ //on veut supprimer le dernier élément si le coût est 0!
+        if (lgetsuiv(larc) && arc_getc(lgetval(lgetsuiv(larc))) == 0){
+            *pa = arc_geta(lgetval(larc));
+            liste_del(NULL, lgetsuiv(larc));
+            lsetsuiv(larc, liste_new());
+            larc = lgetsuiv(larc);
+        }
+        else{
+            larc = lgetsuiv(larc);
+        }
+    }
+
+    return chemin;
+}
 
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
@@ -195,8 +211,13 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 		if (old_j==j) {		// pas de min != INF non atteint trouvé			///////////////////////////////////////////////////////////
 							// cas pas de solution    equivalent au test pcc[j]!= +inf    ///////////////////////////////////////////////////////////
 			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau (ou à contre-sens)\n");
+
+			/* Libération */
+			free(tab_pcc);
+			free(pere);
+			free(s_atteint);
 			return NULL;
-		}
+		} 
 		s_atteint[j] = 1;   //j devient atteint
 
 		/* maj du pcc pour tous les voisins de j */
@@ -226,6 +247,8 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 	for (i=a; i!=d; i=pere[i]) {
 		chemin = ajout_tete(trouve_arc(g.tab_s[pere[i]].voisins, i), chemin);
 	}
+	
+	/* Libération */
 	free(tab_pcc);
 	free(pere);
 	free(s_atteint);

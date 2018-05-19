@@ -20,7 +20,7 @@ void liste_print(action element_print, Liste l){
 	}
 }
 Liste ajout_tete(void* e, Liste l){
-	Liste p = calloc(1,sizeof(*p)); 
+	Liste p = calloc(1,sizeof(*p));
 	if (p == NULL){
 		printf("\nerreur malloc %s %s", __FILE__, __func__);
 		exit(2);
@@ -34,7 +34,7 @@ Liste liste_tete_del(action element_del, Liste l){
 	else{
 		Liste p;
 		p = l->suiv;
-		element_del(l->val);
+		if (element_del) element_del(l->val);
 		free(l);
 		return p;
 	}
@@ -42,8 +42,8 @@ Liste liste_tete_del(action element_del, Liste l){
 void liste_del(action element_del, Liste l){
 	if (liste_vide(l)) free(l);
 	else{
-		liste_del(element_del, l->suiv); 
-		if (element_del) element_del(l->val); 
+		liste_del(element_del, l->suiv);
+		if (element_del) element_del(l->val);
 		free(l);
 	}
 }
@@ -99,4 +99,8 @@ void* lgetval(Liste l){
 }
 Liste lgetsuiv(Liste l){
 	return l->suiv;
+}
+
+void lsetsuiv(Liste l, Liste s){
+	l->suiv = s;
 }
