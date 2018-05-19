@@ -18,24 +18,24 @@ void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	Liste l_voisins;
 	
 	// parcours de la liste de hash coorespondante au nom du nom_noeud
-	for (l_hs=find_l_hs(ht, hs_getn(hs)) ; liste_vide(l_hs) ; l_hs=lgetsuiv(l_hs)) {
+	for (l_hs=find_l_hs(ht, hs_getn(hs)) ; !liste_vide(l_hs) ; l_hs=lgetsuiv(l_hs)) {
 		// selection les sommets en correspondance (vérif si c'est pas une colision dans la table de hachage)
 		if (!strcmp(hs_getn(lgetval(l_hs)), hs_getn(hs) ) ) {
 			// parcours de la liste des voisins pour chaque sommet de la correspondance
 			for (l_voisins=g.tab_s[hs_geti(lgetval(l_hs))].voisins ; !liste_vide(l_voisins) ; l_voisins=lgetsuiv(l_voisins)) {
-				printf("DEBUG CORRESP  ALL i: %d (%s) --> i: %d (%s)\nCOUT : %lf\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)));
+				printf("DEBUG CORRESP  ALL i: %d (%s) --> i: %d (%s)\nCOUT : %lf  a: %d\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)) , arc_geta(lgetval(l_voisins)) );
 				// si voisin est dans la m^eme station => cout de l'arc mis à 0
 				if (!strcmp( g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud, g.tab_s[hs_geti(hs)].nom_noeud ) ) {  // utilisation de g.tab_s[hs_geti(hs)].nom_noeud plutot que (hs_getn(hs) pour régler les problèmes de MAJ/min
 					// IL FAUT TEST COUT == 360 POUR ETRE SUR QUE ÇA MARCH
-					printf("DEBUG CORRESP SET0 i: %d (%s) --> i: %d (%s)\nCOUT : %lf\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)));
-					arc_setc(lgetval(l_voisins), 0); 
+					printf("       ==>   DEBUG CORRESP SET0 i: %d (%s) --> i: %d (%s)\n       COUT : %lf  a: %d\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)) , arc_geta(lgetval(l_voisins)) );
+					arc_setc(lgetval(l_voisins), 0);
+					printf("       ==>   DEBUG CORRESP SET0 i: %d (%s) --> i: %d (%s)\n       COUT : %lf  a: %d\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)) , arc_geta(lgetval(l_voisins)) );
 				}
 			}
 		}
 	}
 }
 
-    
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
 

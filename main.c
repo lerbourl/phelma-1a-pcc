@@ -15,10 +15,10 @@ int main(int argc, char* argv[]){
 	char* nom_fichier = argv[1];
     printf("\nlecture du fichier %s et création du graphe ...\n", nom_fichier);
 	GRAPHE g = lecture_fichier(nom_fichier);
-	//affiche_graphe(g);
+	
     printf("création de la table de hachage ...\n");
 	H_TABLE ht = ht_make_graphe(g);
-
+	
 	printf("recherche du plus court chemin entre deux sommets du graphe\n");
 	char ns1[100];
 	char ns2[100];
@@ -38,7 +38,7 @@ int main(int argc, char* argv[]){
 	H_SOMMET hs2 = ht_search(ht, hs_getn, ns2);
 	err_ctrl(hs2, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
 
-    /* gestion des correspondance */
+    /* gestion des correspondances */
 
 	printf("\ngestion des correspondances sur les stations d'arrivée et de départ...\n");
     corresp_set_zero(g, ht, hs1);  // correspondance station de départ

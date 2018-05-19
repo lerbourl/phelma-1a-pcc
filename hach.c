@@ -34,7 +34,7 @@ int ht_del(action element_del, void* ht_ambigu){
     H_TABLE ht = (H_TABLE)ht_ambigu;
     int i;
     for (i = 0 ; i<ht->d_table ; i++) liste_del(element_del, ht->table[i]);
-    free(ht->table);                                                                    // free(ht); ne suffit pas ?
+    free(ht->table);
     free(ht);
     return 0;
 }
