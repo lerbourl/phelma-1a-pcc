@@ -10,13 +10,28 @@ double cout_chemin(L_ARC chemin) {
 		somme += arc_getc((T_ARC)lgetval(larc));
 	}
 	return somme;
-}   
+}
 
+void affiche_chemin_ds_graphe(H_SOMMET d, H_SOMMET a, GRAPHE g){
+    L_ARC chemin = pcc(g, hs_geti(d), hs_geti(a));
+    if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
+    double cout_total = cout_chemin(chemin);
+    printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(d), g.tab_s[hs_geti(d)].nom_noeud, hs_geti(a), g.tab_s[hs_geti(a)].nom_noeud);
+        L_ARC larc;
+    	for (larc=chemin; (larc) ; larc=lgetsuiv(larc)){
+            printf("\n|--> %s\n        ", g.tab_s[arc_geta(lgetval(larc))].nom_noeud);
+            arc_print(lgetval(larc));
+        }
+        printf("\nCout Total : %lf\n", cout_total);
+    }
+    liste_del(NULL, chemin); // ici, on ne libère pas les éléments de la
+							 // liste d'arcs, c'est fait dans libère graphe!
+}
 
 void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	Liste l_hs;
 	Liste l_voisins;
-	
+
 	// parcours de la liste de hash coorespondante au nom du nom_noeud
 	for (l_hs=find_l_hs(ht, hs_getn(hs)) ; liste_vide(l_hs) ; l_hs=lgetsuiv(l_hs)) {
 		// selection les sommets en correspondance (vérif si c'est pas une colision dans la table de hachage)
@@ -28,14 +43,14 @@ void corresp_set_zero(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 				if (!strcmp( g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud, g.tab_s[hs_geti(hs)].nom_noeud ) ) {  // utilisation de g.tab_s[hs_geti(hs)].nom_noeud plutot que (hs_getn(hs) pour régler les problèmes de MAJ/min
 					// IL FAUT TEST COUT == 360 POUR ETRE SUR QUE ÇA MARCH
 					printf("DEBUG CORRESP SET0 i: %d (%s) --> i: %d (%s)\nCOUT : %lf\n", hs_geti(lgetval(l_hs)) , g.tab_s[hs_geti(lgetval(l_hs))].nom_noeud , arc_geta(lgetval(l_voisins)) , g.tab_s[arc_geta(lgetval(l_voisins))].nom_noeud , arc_getc(lgetval(l_voisins)));
-					arc_setc(lgetval(l_voisins), 0); 
+					arc_setc(lgetval(l_voisins), 0);
 				}
 			}
 		}
 	}
 }
 
-    
+
 L_ARC pcc(GRAPHE g, int d, int a) {
 	int i;
 
