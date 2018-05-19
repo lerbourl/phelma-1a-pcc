@@ -10,7 +10,7 @@ struct ht_t{
 //renvoie l'indice de hachage
 unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
     int i = 0;
-    char* mot = strdup((char*)mot_non_alloue);
+    unsigned char* mot = (unsigned char*)strdup((char*) mot_non_alloue);
     while(mot[i] != 0){
         mot[i] = tolower(mot[i]);
         i++;
@@ -21,6 +21,7 @@ unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
         h = (h*31 + mot[i]) % dim_tab_hach;
         i++;
     }
+    if (h<0) printf("%s %d\n", mot, h);
     free(mot);
     return h;
 }
@@ -80,7 +81,7 @@ void* ht_search(H_TABLE ht, action_s e_string, char* label){
             return lgetval(l);
         }
     }
-    printf("\nélément non répertorié dans la table de hachage:%s\n", label);
+    printf("\nélément non répertorié dans la table de hachage: %s\n", label);
     return NULL;
 }
 

@@ -20,47 +20,43 @@ int main(int argc, char* argv[]){
 	H_TABLE ht = ht_make_graphe(g);
 	
 	printf("recherche du plus court chemin entre deux sommets du graphe\n");
-	char ns1[100];
-	char ns2[100];
-	/* réupération de la chaine de manière sécurisée */
-	printf("\nentrez le nom du 1er sommet: ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
-	scanf ("%99[^\n]s", ns1);	// 99 caractères, tout sauf \n
-	scanf ("%*[^\n]");	// si buffer éxcédent on le vide
-	getchar (); 	// on vide le \n du buffer
-	/* recherche dans la table */
-	H_SOMMET hs1 = ht_search(ht, hs_getn, ns1);
-	err_ctrl(hs1, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
+	char ns1[100] = " ";
+	char ns2[100] = " ";
+	H_SOMMET hs1 = NULL;
+	while (!hs1){
+		/* réupération de la chaine de manière sécurisée */
+		printf("\nentrez le nom du sommet d'arrivée: ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
+		scanf ("%99[^\n]s", ns1);	// 99 caractères, tout sauf \n
+		scanf ("%*[^\n]");	// si buffer éxcédent on le vide
+		getchar (); 	// on vide le \n du buffer
+		/* recherche dans la table */
+		hs1 = ht_search(ht, hs_getn, ns1);
+	}
+
 	/* idem sommet 2 */
-	printf("\nentrez le nom du 2nd sommet: ");
-	scanf ("%99[^\n]s", ns2);
-	scanf ("%*[^\n]");
-	getchar ();
-	H_SOMMET hs2 = ht_search(ht, hs_getn, ns2);
-	err_ctrl(hs2, "sommet non trouvé", __FILE__, __func__, __LINE__, "");
+	H_SOMMET hs2 = NULL;
+	while (!hs2){
+		/* réupération de la chaine de manière sécurisée */
+		printf("\nentrez le nom du sommet de départ: ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
+		scanf ("%99[^\n]s", ns2);	// 99 caractères, tout sauf \n
+		scanf ("%*[^\n]");	// si buffer éxcédent on le vide
+		getchar (); 	// on vide le \n du buffer
+		/* recherche dans la table */
+		hs2 = ht_search(ht, hs_getn, ns2);
+	}
 
     /* gestion des correspondances */
 
 	printf("\ngestion des correspondances sur les stations d'arrivée et de départ...\n");
     corresp_set_zero(g, ht, hs1);  // correspondance station de départ
     corresp_set_zero(g, ht, hs2);  // correspondance station de arrivée
-    
-    
+
+
 	/* plus court chemin */
 	printf("calcul du plus court chemin en cours...\n");
-    printf("index s1: %d\nindex s2: %d\n", hs_geti(hs1), hs_geti(hs2));
-    
-    L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
-    double cout_total = cout_chemin(chemin);
-
-    if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
-        printf("\n\nPlus Court Chemin : Index %d (%s)  -->  Index %d (%s)\n", hs_geti(hs1), g.tab_s[hs_geti(hs1)].nom_noeud, hs_geti(hs2), g.tab_s[hs_geti(hs2)].nom_noeud);
-        liste_print(arc_print, chemin);
-        printf("\nCout Total : %lf\n", cout_total);
-    }
+	affiche_chemin_ds_graphe(hs1, hs2, g);
 
 	/* libération des structures */
-	liste_del(NULL, chemin);	// ici, on ne libère pas les éléments de la
-								// liste d'arcs, c'est fait dans libère graphe!
 	ht_del(hs_del, ht);	// hs1 et hs2 se libèrent déjà ici
 	libere_graphe(g);
 
