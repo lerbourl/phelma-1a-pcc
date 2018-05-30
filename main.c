@@ -9,16 +9,16 @@
 #include "hach.h"
 
 int main(int argc, char* argv[]){
-
-	int timer = clock();
-
+	int timer_graphe = clock();
 	char* nom_fichier = argv[1];
     printf("\nlecture du fichier %s et création du graphe ...\n", nom_fichier);
 	GRAPHE g = lecture_fichier(nom_fichier);
-	
+
     printf("création de la table de hachage ...\n");
 	H_TABLE ht = ht_make_graphe(g);
-	
+
+	printf("\nTemps remplissage graphe/hashtable: %fs\n", (double)(clock() - timer_graphe)/CLOCKS_PER_SEC);
+
 	printf("recherche du plus court chemin entre deux sommets du graphe\n");
 	char ns1[100] = " ";
 	char ns2[100] = " ";
@@ -32,7 +32,6 @@ int main(int argc, char* argv[]){
 		/* recherche dans la table */
 		hs1 = ht_search(ht, hs_getn, ns1);
 	}
-
 	/* idem sommet 2 */
 	H_SOMMET hs2 = NULL;
 	while (!hs2){
@@ -53,7 +52,11 @@ int main(int argc, char* argv[]){
 
 	/* plus court chemin */
 	printf("calcul du plus court chemin en cours...\n");
+
+	int timer_pcc = clock();
 	L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
+	printf("\nTemps remplissage graphe/hashtable: %fs\n", (double)(clock() - timer_pcc)/CLOCKS_PER_SEC);
+
 	if (chemin){
 	    printf("\n///\n///  Plus Court Chemin entre %s et %s:\n///\n", g.tab_s[hs_geti(hs1)].nom_noeud, g.tab_s[hs_geti(hs2)].nom_noeud);
 		/*gestion des correspondances*/
@@ -73,6 +76,6 @@ int main(int argc, char* argv[]){
 	ht_del(hs_del, ht);	// hs1 et hs2 se libèrent déjà ici
 	libere_graphe(g);
 	/* timer éxecution */
-    printf("\nFIN TIMER : %fs\n", (double)(clock() - timer)/CLOCKS_PER_SEC);
+
     return EXIT_SUCCESS;
 }
