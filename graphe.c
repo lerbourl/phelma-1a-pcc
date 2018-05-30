@@ -39,7 +39,6 @@ GRAPHE lecture_fichier(char* nom_fichier){
         /* numéro contient alors l’entier, lat et longi la position, line le nom de la ligne */
         fgets(mot,511,f);
         if (mot[strlen(mot)-1]<32) mot[strlen(mot)-1]=0;
-        if (mot[0] == 32) mot++; //Hotfix pas très optimisé pour virer l'espace au debut du nom dans certain graphe
         /* mot contient le nom du sommet. */
         g.tab_s[numero].x = lat;
         g.tab_s[numero].y = longi;
