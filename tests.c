@@ -10,8 +10,6 @@
 
 int main(int argc, char* argv[]){
 
-	int timer = clock();
-
     printf("test 1 interface sommets pour hachage\n");
 	H_SOMMET hs = hs_make(3, "Paris");
 	hs_print(hs);
@@ -81,6 +79,7 @@ int main(int argc, char* argv[]){
     getchar();
 
 	printf("test 8 pcc\n");
+	printf("test pcc graphe2 de 10 à 8...\n")
 	g = lecture_fichier(argv[1]);
     L_ARC chemin = pcc(g, 10, 8);
 	liste_print(arc_print, chemin);
@@ -132,7 +131,5 @@ int main(int argc, char* argv[]){
 
     getchar();
 
-	/* timer éxecution */
-    printf("\nFIN TIMER : %fs\n", (double)(clock() - timer)/CLOCKS_PER_SEC);
     return EXIT_SUCCESS;
 }

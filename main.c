@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
 
 	int timer_pcc = clock();
 	L_ARC chemin = pcc(g, hs_geti(hs1), hs_geti(hs2));
-	printf("\nTemps remplissage graphe/hashtable: %fs\n", (double)(clock() - timer_pcc)/CLOCKS_PER_SEC);
+	printf("Temps remplissage graphe/hashtable: %fs\n", (double)(clock() - timer_pcc)/CLOCKS_PER_SEC);
 
 	if (chemin){
 	    printf("\n///\n///  Plus Court Chemin entre %s et %s:\n///\n", g.tab_s[hs_geti(hs1)].nom_noeud, g.tab_s[hs_geti(hs2)].nom_noeud);
