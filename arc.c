@@ -21,7 +21,7 @@ int arc_del(void* a){
 }
 int arc_print(void* a_ambigu){
     T_ARC a = (T_ARC)a_ambigu;  // a est bien un T_ARC, l'ambiguité du void* est levée
-    return printf("  ARC arrivee:%d cout:%f\n", a->arrivee, a->cout);
+    return printf("    INFO ARC - arrivee:%d cout:%f\n", a->arrivee, a->cout);
 }
 T_ARC arc_make(int arr, float c){
     T_ARC a = arc_new();
