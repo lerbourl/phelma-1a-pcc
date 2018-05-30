@@ -22,13 +22,6 @@ int main(int argc, char* argv[]){
 	H_TABLE ht = ht_make_graphe(g);
 	printf("Temps remplissage table de hachage: %fs\n", (double)(clock() - timer_hash)/CLOCKS_PER_SEC);
 
-	int choix1 = -1;
-	do{
-		printf("\nMode de choix des sommmets:\n0 index\n1 nom\n");
-		scanf("%1d", &choix1); //1 caractère
-		getchar(); 	// on vide le \n du buffer
-	}while(!(choix1 == 0 || choix1 == 1));
-
 	H_SOMMET hs1;
 	H_SOMMET hs2;
 	char ns1[100] = " ";
@@ -41,6 +34,13 @@ int main(int argc, char* argv[]){
 	int choix2;
 
 	do{
+		int choix1 = -1;
+		do{
+			printf("\nMode de choix des sommmets:\n0 index\n1 nom\n");
+			scanf("%1d", &choix1); //1 caractère
+			getchar(); 	// on vide le \n du buffer
+		}while(!(choix1 == 0 || choix1 == 1));
+
 		hs1 = NULL;
 		hs2 = NULL;
 		if (choix1){ // demande par le nom
