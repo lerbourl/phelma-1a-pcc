@@ -13,7 +13,7 @@ double cout_chemin(L_ARC chemin) {
 }
 
 void affiche_chemin(L_ARC chemin, GRAPHE g){
-    printf("\nsuivre l'itinéraire:");
+    printf("\nsuivre l'itinéraire:\n");
     if (chemin) {    // Si pas de chemin possible entre les 2 sommets => annule l'affichage du pcc
         L_ARC larc;
     	for (larc=chemin; (larc) ; larc=lgetsuiv(larc)){
@@ -74,25 +74,25 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 	/* INIT */
 	double* tab_pcc = malloc(g.nb_s * sizeof(double));
 	err_ctrl(tab_pcc, "erreur tableau dynamique tab_pcc", __FILE__, __func__, __LINE__, "");
-	
+
 	int* pere = malloc(g.nb_s * sizeof(int));
 	err_ctrl(pere, "erreur tableau dynamique pere", __FILE__, __func__, __LINE__, "");
-	
+
 	/* s_atteint = tableau des sommets atteint :
 	   if s_atteint[j]==0 : j dans C (ensemble des sommets qui restent a visiter)
 	   if s_atteint[j]==1 : j dans S (ensemble des sommets dont on connait le ppc en partant de d) */
-	int* tas_C = calloc(g.nb_s, sizeof(int)); 
+	int* tas_C = calloc(g.nb_s, sizeof(int));
 	err_ctrl(tas_C, "erreur tableau dynamique tas_C", __FILE__, __func__, __LINE__, "");
 
 	int* pcc_to_tas = calloc(g.nb_s, sizeof(int));
 	err_ctrl(pcc_to_tas, "erreur tableau dynamique pcc_to_tas", __FILE__, __func__, __LINE__, "");
-	
+
 	for(i=0; i<g.nb_s; i++) {
 		tab_pcc[i] = INFINITY;
 		pere[i] = -1;
 	}
 	tab_pcc[d]=0;
-	
+
 	int len_tas=g.nb_s;
 	for(i=0; i<g.nb_s; i++) {
 		tas_C[i] = i;
@@ -106,11 +106,11 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 	int k;
 
 	L_ARC v;
-	
+
 	do {
 		/* recherche du sommet j dans C avec la val de tab_pcc la plus petite */
 		j = tas_C[0];   // la min est à la racine du tas
-		
+
 /**/	if (tab_pcc[j] == INFINITY) {		// pas de min != INF non atteint trouvé			///////////////////////////////////////////////////////////
 											// cas pas de solution    equivalent au test pcc[j]!= +inf de l'énoncé   ///////////////////////////////////////////////////////////
 			printf("\nPas de chemin possible, les voitures ne roulent pas sur l'eau (ou à contre-sens)\n");
@@ -127,10 +127,10 @@ L_ARC pcc(GRAPHE g, int d, int a) {
 printf("DEBUG tas\n");
 for(i=0;i<g.nb_s;i++)  {
 printf("tas  %d  %d  %lf     %d\n", i,tas_C[i], tab_pcc[tas_C[i]], pcc_to_tas[tas_C[i]]);
-}*/		
+}*/
 		/* maj du pcc pour tous les voisins de j */
 		for(v=g.tab_s[j].voisins ; !liste_vide(v) ; v=lgetsuiv(v)) {
-			k = arc_geta((T_ARC)lgetval(v));			
+			k = arc_geta((T_ARC)lgetval(v));
 			if (tab_pcc[k] > tab_pcc[j] + arc_getc((T_ARC)lgetval(v))) {
 				tab_pcc[k] = tab_pcc[j] + arc_getc((T_ARC)lgetval(v));
 /*
@@ -138,7 +138,7 @@ printf("DEBUG tas0\n");
 for(i=0;i<g.nb_s;i++)  {
 printf("tas0 %d  %d  %lf     %d\n", i,tas_C[i], tab_pcc[tas_C[i]], pcc_to_tas[tas_C[i]]);
 }*/
-				
+
 				// maj tas   il faut:  index k dans pcc => index dans tas
 				augmentetas(tas_C, tab_pcc, pcc_to_tas, pcc_to_tas[k]);
 /*
@@ -149,7 +149,7 @@ printf("tasX %d  %d  %lf     %d\n", i,tas_C[i], tab_pcc[tas_C[i]], pcc_to_tas[ta
 
 				pere[arc_geta((T_ARC)lgetval(v))] = j;
 			}
-		}		
+		}
 	} while ( pcc_to_tas[a] < len_tas );    // SI pcc_to_tas[a] > len_tas-1  ALORS on a atteint l'arrivée
 
 	/* Creation de chemin a partir de pere */
@@ -157,13 +157,13 @@ printf("tasX %d  %d  %lf     %d\n", i,tas_C[i], tab_pcc[tas_C[i]], pcc_to_tas[ta
 	for (i=a; i!=d; i=pere[i]) {
 		chemin = ajout_tete(trouve_arc(g.tab_s[pere[i]].voisins, i), chemin);
 	}
-	
+
 	/* Libération */
 	free(tab_pcc);
 	free(pere);
 	free(tas_C);
 	free(pcc_to_tas);
-	
+
 	return chemin;
 }
 
@@ -173,10 +173,10 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 	/* INIT */
 	double* tab_pcc = malloc(g.nb_s * sizeof(double));
 	err_ctrl(tab_pcc, "erreur tableau dynamique tab_pcc", __FILE__, __func__, __LINE__, "");
-	
+
 	int* pere = malloc(g.nb_s * sizeof(int));
 	err_ctrl(pere, "erreur tableau dynamique pere", __FILE__, __func__, __LINE__, "");
-	
+
 	// s_atteint = tableau des sommets atteint :
 	// if s_atteint[j]==0 : j dans C (ensemble des sommets qui restent a visiter)
 	// if s_atteint[j]==1 : j dans S (ensemble des sommets dont on connait le ppc en partant de d)
@@ -196,7 +196,7 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 	int old_j = -1;	// sert dans la détection du cas ou il n'y a pas de solution
 					// =-1 pour qu'il soit bien initialisé avant d'être comparé
 	L_ARC v;
-	
+
 	do {
 		/* recherche du sommet j dans C avec la val de tab_pcc la plus petite */
 		min = INFINITY;
@@ -217,7 +217,7 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 			free(pere);
 			free(s_atteint);
 			return NULL;
-		} 
+		}
 		s_atteint[j] = 1;   //j devient atteint
 
 		/* maj du pcc pour tous les voisins de j */
@@ -247,7 +247,7 @@ L_ARC pcc_sans_tas(GRAPHE g, int d, int a) {
 	for (i=a; i!=d; i=pere[i]) {
 		chemin = ajout_tete(trouve_arc(g.tab_s[pere[i]].voisins, i), chemin);
 	}
-	
+
 	/* Libération */
 	free(tab_pcc);
 	free(pere);

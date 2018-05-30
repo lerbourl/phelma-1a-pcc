@@ -86,7 +86,7 @@ int main(int argc, char* argv[]){
 
 	    /* gestion des correspondances */
 
-		printf("\nGestion des correspondances sur les stations d'arrivée et de départ...\n");
+		printf("\nGestion des correspondances sur les stations d'arrivée et de départ...");
 	    corresp_set_zero(g, ht, hs1);  // correspondance station de départ
 	    corresp_set_zero(g, ht, hs2);  // correspondance station de arrivée
 
