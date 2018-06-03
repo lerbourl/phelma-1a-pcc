@@ -113,10 +113,10 @@ int main(int argc, char* argv[]){
 			/*cout du chemin*/
 			cout_total = cout_chemin(chemin);
 			printf("\nCout Total : %lf\n", cout_total);
-			/* on remet les correspondances à 360 */
-			corresp_set_360(g, ht, hs1);  // correspondance station de départ
-		    corresp_set_360(g, ht, hs2);  // correspondance station de arrivée
 		}
+		/* on remet les correspondances à 360 */
+		corresp_set_360(g, ht, hs1);  // correspondance station de départ
+		corresp_set_360(g, ht, hs2);  // correspondance station de arrivée
 		do{
 			printf("\nChercher encore:\n0 non\n1 oui\n");
 			scanf("%1d", &choix2); //1 caractère
