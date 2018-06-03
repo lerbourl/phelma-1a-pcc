@@ -71,7 +71,9 @@ void corresp_set_360(GRAPHE g, H_TABLE ht, H_SOMMET hs) {
 	}
 }
 
-/*supprime les arcs de coût zéro d'un chemin*/
+/*supprime les arcs de coût zéro d'un chemin (en début et fin). On rempli aussi
+les variables de départ effectif et d'arrivée effictive, via les pointeurs pa
+et pd*/
 L_ARC chemin_supr_zero(L_ARC chemin, int* pd, int* pa){
     // on supprime le premier élément si le coût est 0
     while(arc_getc(lgetval(chemin)) == 0){
