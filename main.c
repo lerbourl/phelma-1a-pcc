@@ -34,6 +34,7 @@ int main(int argc, char* argv[]){
 	int choix2;
 
 	do{
+		printf("\n//nouvelle recherche//\n");
 		int choix1 = -1;
 		do{
 			printf("\nMode de choix des sommmets:\n0 index\n1 nom\n");
@@ -57,7 +58,7 @@ int main(int argc, char* argv[]){
 			/* idem sommet 2 */
 			while (!hs2){
 				/* réupération de la chaine de manière sécurisée */
-				printf("\nEntrez le nom du sommet d'arrivée: ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
+				printf("\nEntrez le nom du sommet d'arrivée : ");                           /* IL FAUDRAIT DEMANDER NUM DE SOMMET OU NOM DE SOMMET => (pas besoin d'utiliser table de hachage si l'utilisisateur renseigne num sommet)*/
 				scanf("%99[^\n]s", ns2);	// 99 caractères, tout sauf \n
 				scanf("%*[^\n]");	// si buffer éxcédent on le vide
 				getchar(); 	// on vide le \n du buffer
@@ -112,7 +113,9 @@ int main(int argc, char* argv[]){
 			/*cout du chemin*/
 			cout_total = cout_chemin(chemin);
 			printf("\nCout Total : %lf\n", cout_total);
-			/* libération des structures */
+			/* on remet les correspondances à 360 */
+			corresp_set_360(g, ht, hs1);  // correspondance station de départ
+		    corresp_set_360(g, ht, hs2);  // correspondance station de arrivée
 		}
 		do{
 			printf("\nChercher encore:\n0 non\n1 oui\n");
@@ -124,6 +127,7 @@ int main(int argc, char* argv[]){
 								 // liste d'arcs, c'est fait dans libère graphe!
 	}while(choix2);
 
+	/* libération des structures */
 	ht_del(hs_del, ht);	// hs1 et hs2 se libèrent déjà ici
 	libere_graphe(g);
 

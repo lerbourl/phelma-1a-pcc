@@ -14,7 +14,7 @@ Ou aller directement à PHELMA sur:
 
 ### Prérequis
 
-Les outils de bases de développement en C sont suffisants pour compiler nos sources. GCC comme compilateur (changer dans le makefile si autre compilateur) ainsi que les librairies standard.
+Les outils de base de développement en C sont suffisants pour compiler nos sources. GCC comme compilateur (changer dans le makefile si autre compilateur) ainsi que les librairies standard.
 
 ### Installation
 
@@ -47,10 +47,10 @@ on peut tester les fuites de mémoire, et récupérer ce que retourne le program
 
 ### que faire ensuite?
 
-Entrer le nom de deux sommets du graphes, et laissez à nos algorithmes le temps de vous trouver l'absolu plus court chemin ! Vous n'avez pas à vous soucier des majuscules/minuscules !
+Entrer le nom ou l'index de deux sommets du graphes, et laissez à nos algorithmes le temps de vous trouver l'absolu plus court chemin ! Vous n'avez pas à vous soucier des majuscules/minuscules !
 
 ATTENTION
-Pour les caractères avec accents ou cédille, les fonctions de changement de case ne fonctionnent pas, il faut rentrer la bonne case.
+Pour les caractères avec accents ou cédilles, les fonctions de changement de case ne fonctionnent pas, il faut rentrer la bonne case.
 
 ## Tests et erreurs
 

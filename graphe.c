@@ -18,7 +18,7 @@ GRAPHE cree_graphe(int n){
     err_ctrl(g.tab_s, "erreur malloc", __FILE__, __func__, __LINE__, "");
     return g;
 }
-// construction d'un graphe à partir d'un fichier corrctement formaté
+/*construction d'un graphe à partir d'un fichier corrctement formaté*/
 GRAPHE lecture_fichier(char* nom_fichier){
     GRAPHE g; // le graphe destiné à être renvoyé
     T_ARC a; // c'est un buffer qui remplira les voisins des sommets
@@ -64,6 +64,7 @@ void libere_graphe(GRAPHE g){
     free(g.tab_s);
 }
 
+/*crée une table de hachage à partir d'un graphe*/
 H_TABLE ht_make_graphe(GRAPHE g){
     H_TABLE ht = ht_make_empty(2 * g.nb_s);                                                       // x2 utile ??
     H_SOMMET hs;

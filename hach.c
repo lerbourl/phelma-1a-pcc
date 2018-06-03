@@ -7,7 +7,7 @@ struct ht_t{
     int d_table;
 };
 
-//renvoie l'indice de hachage
+/*renvoie l'indice de hachage*/
 unsigned int hachage(unsigned char* mot_non_alloue, int dim_tab_hach){
     int i = 0;
     unsigned char* mot = (unsigned char*)strdup((char*) mot_non_alloue);
@@ -62,12 +62,14 @@ H_TABLE ht_make_empty(int dim){
 int ht_getd(H_TABLE ht){
     return ht->d_table;
 }
-
+/*  remplit une table de hachage avec un element indexé par un label */
 void ht_fill(H_TABLE ht, void* element, char* label){
     int h = hachage((unsigned char*)label, ht_getd(ht));
     ht->table[h] = ajout_tete(element, ht->table[h]);
 }
 
+/*  retourne un élément de la table de hachage en log(n) en le recherchant par
+    son label   */
 void* ht_search(H_TABLE ht, action_s e_string, char* label){
     /* ATTENTION renvoie que la 1ere itération du label trouvé
     si station avec meme nom => en revoie qu'une */
@@ -85,7 +87,7 @@ void* ht_search(H_TABLE ht, action_s e_string, char* label){
     return NULL;
 }
 
-
+/*  retourne toute la liste à l'index du label*/
 Liste find_l_hs(H_TABLE ht, char* nom_noeud) {
 	unsigned int hash = hachage((unsigned char*)nom_noeud, ht_getd(ht));
 	return ht->table[hash];
