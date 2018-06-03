@@ -79,7 +79,7 @@ int main(int argc, char* argv[]){
     getchar();
 
 	printf("test 8 pcc\n");
-	printf("test pcc graphe2 de 10 à 8...\n")
+	printf("test pcc graphe2 de 10 à 8...\n");
 	g = lecture_fichier(argv[1]);
     L_ARC chemin = pcc(g, 10, 8);
 	liste_print(arc_print, chemin);
