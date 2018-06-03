@@ -117,7 +117,7 @@ int main(int argc, char* argv[]){
 
     getchar();
 
-	printf("test 11 recherche d'un hs dans la table\n");
+	printf("test 11 recherche d'un hs dans la table (avec graphe3!)\n");
     g = lecture_fichier(argv[1]);
 	ht = ht_make_graphe(g);
 	printf("\nrecherche GrenZZZble:");
